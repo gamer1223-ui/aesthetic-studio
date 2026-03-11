@@ -1,76 +1,71 @@
-// ===========================
-// scrollable-text-panel.js
-// Scrollable dynamic panel for text, colors, or items
-// ===========================
+/* scrolllabel-text-panel.js – upgraded for stylish scrollable panels */
 
 function createScrollablePanel(containerId, items, options = {}) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  // Clear previous content
-  container.innerHTML = "";
+  container.innerHTML = ''; // clear previous content
+  container.classList.add('scroll-panel');
 
-  // Apply default styles
-  container.style.display = "flex";
-  container.style.flexDirection = options.direction || "row"; // horizontal or vertical
-  container.style.overflowX = options.direction === "row" ? "auto" : "hidden";
-  container.style.overflowY = options.direction === "column" ? "auto" : "hidden";
-  container.style.maxHeight = options.maxHeight || "120px";
-  container.style.maxWidth = options.maxWidth || "100%";
-  container.style.padding = "5px";
+  // Set panel direction
+  container.style.flexDirection = options.direction === 'column' ? 'column' : 'row';
+  container.style.maxHeight = options.maxHeight || '80px';
+  container.style.overflowX = options.direction === 'row' ? 'auto' : 'hidden';
+  container.style.overflowY = options.direction === 'column' ? 'auto' : 'hidden';
 
-  // Create item elements
   items.forEach(item => {
-    const el = document.createElement("div");
-    el.style.display = "flex";
-    el.style.alignItems = "center";
-    el.style.justifyContent = "center";
-    el.style.margin = "5px";
-    el.style.cursor = "pointer";
+    const div = document.createElement('div');
+    div.style.display = 'flex';
+    div.style.alignItems = 'center';
+    div.style.justifyContent = 'center';
+    div.style.margin = '4px';
+    div.style.cursor = 'pointer';
+    div.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+    div.style.width = options.iconSize || '40px';
+    div.style.height = options.iconSize || '40px';
+    div.style.borderRadius = '10px';
+    div.style.background = 'rgba(255,255,255,0.1)';
+    div.style.fontSize = '14px';
+    div.style.color = '#fff';
+    div.title = item.name;
 
-    // Icon or color preview
-    if (item.icon) {
-      const icon = document.createElement("img");
-      icon.src = item.icon;
-      icon.style.width = options.iconSize || "24px";
-      icon.style.height = options.iconSize || "24px";
-      icon.style.marginRight = "5px";
-      el.appendChild(icon);
-    } else if (item.color) {
-      const colorBox = document.createElement("div");
-      colorBox.style.width = options.iconSize || "24px";
-      colorBox.style.height = options.iconSize || "24px";
-      colorBox.style.backgroundColor = item.color;
-      colorBox.style.border = "1px solid #000";
-      colorBox.style.marginRight = "5px";
-      el.appendChild(colorBox);
+    // Hover effect
+    div.addEventListener('mouseover', () => {
+      div.style.transform = 'scale(1.2)';
+      div.style.boxShadow = '0 4px 15px rgba(255,119,255,0.6)';
+    });
+    div.addEventListener('mouseout', () => {
+      div.style.transform = 'scale(1)';
+      div.style.boxShadow = 'none';
+    });
+
+    // Click event
+    div.addEventListener('click', () => {
+      if(item.onClick) item.onClick();
+    });
+
+    // If color item, show color
+    if(item.color){
+      div.style.background = item.color;
     }
 
-    // Text
-    const text = document.createElement("span");
-    text.innerText = item.name || "";
-    el.appendChild(text);
-
-    // Click handler
-    if (item.onClick) {
-      el.addEventListener("click", item.onClick);
+    // If font item, show first letter styled
+    if(item.font){
+      div.style.fontFamily = item.font;
+      div.textContent = item.name[0];
     }
 
-    container.appendChild(el);
-  });
-
-  // Optional: Add scroll shadow indicators
-  container.addEventListener("scroll", () => {
-    // You can implement shadows or arrows to indicate more content
+    container.appendChild(div);
   });
 }
 
-// Example usage:
-// HTML: <div id="colorPanel"></div>
-// JS:
-createScrollablePanel("colorPanel", [
-  { name: "Red", color: "#ff0000", onClick: () => applyTextColor("#ff0000") },
-  { name: "Green", color: "#00ff00", onClick: () => applyTextColor("#00ff00") },
-  { name: "Blue", color: "#0000ff", onClick: () => applyTextColor("#0000ff") },
-  // add as many as needed
-], { direction: "row", iconSize: "30px", maxHeight: "60px" });
+// Example usage functions
+function applyFont(font){
+  const selectedText = document.querySelector('#canvasText'); // your selected text element
+  if(selectedText) selectedText.style.fontFamily = font;
+}
+
+function applyTextColor(color){
+  const selectedText = document.querySelector('#canvasText'); // your selected text element
+  if(selectedText) selectedText.style.color = color;
+}
