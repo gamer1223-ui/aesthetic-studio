@@ -1,0 +1,170 @@
+/* ===============================
+   Aesthetic Studio Main Styles
+   =============================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+/* RGB Animated Background */
+
+body{
+background:linear-gradient(270deg,#ff0080,#ff8c00,#40e0d0,#8a2be2);
+background-size:800% 800%;
+animation:rgbmove 15s ease infinite;
+min-height:100vh;
+color:white;
+}
+
+@keyframes rgbmove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Main Container */
+
+.app-container{
+max-width:1000px;
+margin:auto;
+padding:15px;
+text-align:center;
+}
+
+/* Title */
+
+.app-title{
+font-size:28px;
+font-weight:bold;
+margin-bottom:10px;
+text-shadow:0 0 10px rgba(0,0,0,0.4);
+}
+
+/* Canvas */
+
+canvas{
+width:100%;
+max-height:500px;
+background:white;
+border-radius:10px;
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+margin-top:10px;
+touch-action:none;
+}
+
+/* Upload Button */
+
+.upload-box{
+margin-top:10px;
+}
+
+/* Toolbar */
+
+.toolbar{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+margin-top:15px;
+}
+
+/* Buttons */
+
+.tool-btn{
+padding:10px 14px;
+border:none;
+border-radius:8px;
+background:rgba(0,0,0,0.6);
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:all .25s;
+}
+
+.tool-btn:hover{
+transform:scale(1.1);
+background:#ff0080;
+box-shadow:0 0 10px #ff0080;
+}
+
+/* Panels */
+
+.panel{
+display:none;
+margin-top:12px;
+background:rgba(255,255,255,0.9);
+color:black;
+padding:10px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Sliders */
+
+.slider{
+width:100%;
+margin-top:5px;
+}
+
+/* Text Input */
+
+.text-input{
+width:100%;
+padding:8px;
+margin-top:5px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+/* Sticker Area */
+
+.sticker-library{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:6px;
+margin-top:8px;
+}
+
+.sticker-library img{
+width:55px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.sticker-library img:hover{
+transform:scale(1.2);
+}
+
+/* Download Button */
+
+.download-btn{
+margin-top:10px;
+background:#00cc66;
+}
+
+.download-btn:hover{
+background:#00ff99;
+}
+
+/* Mobile Responsive */
+
+@media(max-width:600px){
+
+.toolbar{
+gap:6px;
+}
+
+.tool-btn{
+padding:8px 10px;
+font-size:13px;
+}
+
+.app-title{
+font-size:22px;
+}
+
+}
