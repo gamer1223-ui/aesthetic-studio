@@ -1,48 +1,31 @@
-// ===========================
-// sliders.js
-// Handles all slidebars: brush size, text size, zoom, rotation
-// ===========================
+/* sliders.js – upgraded for stylish sliders */
 
-const sliders = document.querySelectorAll(".slider");
+document.addEventListener("DOMContentLoaded", () => {
 
-sliders.forEach(slider => {
-  const valueDisplay = slider.nextElementSibling; // show value next to slider
+  const sliders = document.querySelectorAll('input[type="range"]');
 
-  // Initialize value display
-  valueDisplay.textContent = slider.value;
+  sliders.forEach(slider => {
+    // Set initial style
+    slider.style.width = "200px";
+    slider.style.height = "10px";
+    slider.style.borderRadius = "5px";
+    slider.style.background = "#ff77ff";
+    slider.style.boxShadow = "0 3px 10px rgba(0,0,0,0.3)";
+    slider.style.transition = "all 0.3s ease";
 
-  // Update on input
-  slider.addEventListener("input", (e) => {
-    const val = e.target.value;
-    valueDisplay.textContent = val;
+    // Create handle animation
+    slider.addEventListener("mouseover", () => {
+      slider.style.boxShadow = "0 5px 15px rgba(255,119,255,0.6)";
+    });
 
-    // Identify slider type by data attribute
-    const type = slider.dataset.type;
+    slider.addEventListener("mouseout", () => {
+      slider.style.boxShadow = "0 3px 10px rgba(0,0,0,0.3)";
+    });
 
-    switch(type) {
-      case "brush":
-        brushSize = val; // global brush size variable
-        break;
-      case "text":
-        textSize = val; // global text size variable
-        updateSelectedText(); // function in text.js to update text size
-        break;
-      case "zoom":
-        canvas.style.transform = `scale(${val/100})`;
-        break;
-      case "rotation":
-        canvas.style.transform = `rotate(${val}deg)`;
-        break;
-      default:
-        console.warn("Unknown slider type:", type);
-    }
+    slider.addEventListener("input", () => {
+      const valuePercent = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+      slider.style.background = `linear-gradient(90deg, #ff77ff ${valuePercent}%, #555 ${valuePercent}%)`;
+    });
   });
 
-  // Optional: smooth sliding animation
-  slider.addEventListener("mousedown", () => {
-    slider.classList.add("active-slider");
-  });
-  slider.addEventListener("mouseup", () => {
-    slider.classList.remove("active-slider");
-  });
 });
