@@ -3,11 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aesthetic Studio V11</title>
+<title>Aesthetic Studio V12</title>
+
+<!-- CSS -->
 <link rel="stylesheet" href="style.css">
+
+<style>
+/* Minimal inline styling for professional buttons and layout */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: rgb(240,240,255);
+}
+.toolbar, .filters, .stickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  margin: 10px;
+}
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+canvas {
+  display: block;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+}
+</style>
+
 </head>
 <body>
 
+<!-- Toolbar -->
 <div class="toolbar">
   <input type="file" id="uploadImage">
   <button onclick="resetFilter()">Reset</button>
@@ -27,6 +66,7 @@
   <label><input type="checkbox" id="textBorder"> Border</label>
 </div>
 
+<!-- Filters -->
 <div class="filters">
   <button onclick="filterBright()">Bright</button>
   <button onclick="filterDark()">Dark</button>
@@ -45,85 +85,23 @@
   <button onclick="filterFilm()">Film</button>
 </div>
 
-<div class="sticker-library">
+<!-- Stickers -->
+<div class="stickers">
   <img src="stickers/sticker1.png">
   <img src="stickers/sticker2.png">
   <img src="stickers/sticker3.png">
-  <!-- add more stickers as needed -->
 </div>
 
+<!-- Canvas -->
 <canvas id="canvas" width="800" height="600"></canvas>
 <button onclick="downloadImage()">Download Edited Image</button>
 
+<!-- JS Files -->
 <script src="editor.js"></script>
 <script src="filters.js"></script>
 <script src="stickers.js"></script>
 <script src="text.js"></script>
 <script src="crop.js"></script>
-<script>
-let baseImage = new Image();
-const canvasEl = document.getElementById("canvas");
-const ctx = canvasEl.getContext("2d");
 
-document.getElementById("uploadImage").addEventListener("change", function(e){
-  let reader = new FileReader();
-  reader.onload = function(event){
-    baseImage.src = event.target.result;
-    baseImage.onload = function(){
-      canvasEl.width = baseImage.width > 800 ? 800 : baseImage.width;
-      canvasEl.height = baseImage.height > 600 ? 600 : baseImage.height;
-      ctx.drawImage(baseImage,0,0,canvasEl.width,canvasEl.height);
-      saveHistory();
-    }
-  }
-  reader.readAsDataURL(e.target.files[0]);
-});
-
-// ===============================
-// Undo/Redo
-// ===============================
-let history = [];
-let historyStep = -1;
-
-function saveHistory(){
-  historyStep++;
-  history = history.slice(0, historyStep);
-  history.push(canvasEl.toDataURL());
-}
-
-function undo(){
-  if(historyStep > 0){
-    historyStep--;
-    let img = new Image();
-    img.src = history[historyStep];
-    img.onload = function(){
-      ctx.clearRect(0,0,canvasEl.width,canvasEl.height);
-      ctx.drawImage(img,0,0,canvasEl.width,canvasEl.height);
-    }
-  }
-}
-
-function redo(){
-  if(historyStep < history.length-1){
-    historyStep++;
-    let img = new Image();
-    img.src = history[historyStep];
-    img.onload = function(){
-      ctx.clearRect(0,0,canvasEl.width,canvasEl.height);
-      ctx.drawImage(img,0,0,canvasEl.width,canvasEl.height);
-    }
-  }
-}
-
-// ===============================
-// Download
-// ===============================
-function downloadImage(){
-  let link = document.createElement("a");
-  link.download = "edited_image.png";
-  link.href = canvasEl.toDataURL();
-  link.click();
-}
-</script>
 </body>
 </html>
