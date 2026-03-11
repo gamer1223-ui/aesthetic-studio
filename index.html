@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aesthetic Studio V11</title>
+
+<style>
+
+body{
+margin:0;
+font-family:sans-serif;
+background:linear-gradient(270deg,#ff0080,#7928ca,#2afadf,#00ffea);
+background-size:800% 800%;
+animation:rgbbg 12s ease infinite;
+}
+
+@keyframes rgbbg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.app{
+max-width:900px;
+margin:auto;
+padding:10px;
+}
+
+canvas{
+width:100%;
+background:white;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,0.3);
+touch-action:none;
+}
+
+.toolbar{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:10px;
+}
+
+button{
+padding:10px 14px;
+border:none;
+border-radius:8px;
+background:#111;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+background:#ff0080;
+}
+
+.panel{
+margin-top:10px;
+display:none;
+background:#ffffffcc;
+padding:10px;
+border-radius:10px;
+}
+
+input[type=range]{
+width:100%;
+}
+
+.textInput{
+width:100%;
+padding:8px;
+margin-top:6px;
+}
+
+.stickers img{
+width:60px;
+margin:4px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<h2 style="color:white;text-align:center;">Aesthetic Studio V11</h2>
+
+<input type="file" id="upload">
+
+<canvas id="canvas"></canvas>
+
+<div class="toolbar">
+
+<button onclick="openPanel('filters')">Filters</button>
+<button onclick="openPanel('draw')">Draw</button>
+<button onclick="openPanel('text')">Text</button>
+<button onclick="openPanel('stickers')">Stickers</button>
+<button onclick="openPanel('crop')">Crop</button>
+<button onclick="undo()">Undo</button>
+<button onclick="redo()">Redo</button>
+<button onclick="download()">Download</button>
+
+</div>
+
+<div id="filters" class="panel">
+
+Brightness
+<input type="range" min="0" max="200" value="100" id="brightness">
+
+Contrast
+<input type="range" min="0" max="200" value="100" id="contrast">
+
+Saturation
+<input type="range" min="0" max="200" value="100" id="saturation">
+
+Blur
+<input type="range" min="0" max="10" value="0" id="blur">
+
+</div>
+
+<div id="draw" class="panel">
+
+Brush Size
+<input type="range" min="1" max="40" value="5" id="brushSize">
+
+<input type="color" id="brushColor">
+
+<button onclick="eraser()">Eraser</button>
+
+</div>
+
+<div id="text" class="panel">
+
+<input class="textInput" id="textInput" placeholder="Type text">
+
+<input type="color" id="textColor">
+
+<select id="fontSelect">
+<option>Arial</option>
+<option>Impact</option>
+<option>Comic Sans MS</option>
+<option>Georgia</option>
+<option>Courier</option>
+</select>
+
+<button onclick="addText()">Add Text</button>
+
+</div>
+
+<div id="stickers" class="panel stickers">
+
+<img src="https://i.imgur.com/4AiXzf8.png">
+<img src="https://i.imgur.com/Z6X9Y9S.png">
+<img src="https://i.imgur.com/0rVeh4A.png">
+<img src="https://i.imgur.com/tqQ4S1K.png">
+
+</div>
+
+<div id="crop" class="panel">
+<button onclick="startCrop()">Start Crop</button>
+<button onclick="applyCrop()">Apply Crop</button>
+</div>
+
+</div>
+
+<script>
+
+let canvas=document.getElementById("canvas");
+let ctx=canvas.getContext("2d");
+
+let img=new Image();
+let drawing=false;
+let brushSize=5;
+let brushColor="#000";
+
+let history=[];
+let redoStack=[];
+
+function openPanel(id){
+document.querySelectorAll(".panel").forEach(p=>p.style.display="none");
+document.getElementById(id).style.display="block";
+}
+
+document.getElementById("upload").onchange=e=>{
+let file=e.target.files[0];
+let reader=new FileReader();
+reader.onload=function(ev){
+img.onload=function(){
+canvas.width=img.width;
+canvas.height=img.height;
+ctx.drawImage(img,0,0);
+saveState();
+}
+img.src=ev.target.result;
+}
+reader.readAsDataURL(file);
+}
+
+canvas.addEventListener("mousedown",startDraw);
+canvas.addEventListener("mousemove",draw);
+canvas.addEventListener("mouseup",stopDraw);
+
+function startDraw(e){
+drawing=true;
+ctx.beginPath();
+ctx.moveTo(e.offsetX,e.offsetY);
+}
+
+function draw(e){
+if(!drawing)return;
+ctx.lineWidth=brushSize;
+ctx.strokeStyle=brushColor;
+ctx.lineTo(e.offsetX,e.offsetY);
+ctx.stroke();
+}
+
+function stopDraw(){
+drawing=false;
+saveState();
+}
+
+document.getElementById("brushSize").oninput=e=>{
+brushSize=e.target.value;
+}
+
+document.getElementById("brushColor").oninput=e=>{
+brushColor=e.target.value;
+}
+
+function eraser(){
+brushColor="white";
+}
+
+function addText(){
+
+let txt=document.getElementById("textInput").value;
+let color=document.getElementById("textColor").value;
+let font=document.getElementById("fontSelect").value;
+
+ctx.fillStyle=color;
+ctx.font="40px "+font;
+ctx.fillText(txt,50,50);
+
+saveState();
+
+}
+
+function download(){
+
+let link=document.createElement("a");
+link.download="edited.png";
+link.href=canvas.toDataURL();
+link.click();
+
+}
+
+function saveState(){
+
+history.push(canvas.toDataURL());
+
+}
+
+function undo(){
+
+if(history.length>1){
+
+redoStack.push(history.pop());
+let imgData=history[history.length-1];
+
+let i=new Image();
+i.onload=function(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.drawImage(i,0,0);
+}
+i.src=imgData;
+
+}
+
+}
+
+function redo(){
+
+if(redoStack.length){
+
+let data=redoStack.pop();
+history.push(data);
+
+let i=new Image();
+i.onload=function(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.drawImage(i,0,0);
+}
+i.src=data;
+
+}
+
+}
+
+</script>
+
+</body>
+  </html>
