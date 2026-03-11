@@ -1,125 +1,141 @@
 // ===========================
 // crop.js
-// Handles cropping functionality with draggable corners
+// Crop functionality with draggable rectangle
 // ===========================
 
-let cropping = false;
-let cropRect = { x: 50, y: 50, width: 200, height: 200 };
-let draggingCorner = null;
+let isCropping = false;
+let cropStartX = 0;
+let cropStartY = 0;
+let cropWidth = 0;
+let cropHeight = 0;
+let draggingCorner = false;
+let cornerSize = 10;
+let activeCorner = null;
 
-// Corner detection radius
-const cornerSize = 12;
-
-// Start cropping
+// Start crop mode
 function startCrop() {
-  cropping = true;
-  drawCanvas();
+  isCropping = true;
 }
 
-// Stop cropping
+// Stop crop mode
 function stopCrop() {
-  cropping = false;
-  draggingCorner = null;
+  isCropping = false;
+  cropWidth = 0;
+  cropHeight = 0;
   drawCanvas();
 }
 
-// Draw crop rectangle overlay
-function drawCropOverlay() {
-  if (!cropping) return;
+// Draw crop rectangle
+function drawCropRect() {
+  if (!isCropping) return;
 
   ctx.save();
-  ctx.strokeStyle = "rgba(0,255,0,0.8)";
+  ctx.strokeStyle = "red";
   ctx.lineWidth = 2;
   ctx.setLineDash([6]);
-  ctx.strokeRect(cropRect.x, cropRect.y, cropRect.width, cropRect.height);
+  ctx.strokeRect(cropStartX, cropStartY, cropWidth, cropHeight);
 
-  // Draw draggable corners
-  ctx.fillStyle = "rgba(0,255,0,0.8)";
-  const corners = [
-    { x: cropRect.x, y: cropRect.y }, // top-left
-    { x: cropRect.x + cropRect.width, y: cropRect.y }, // top-right
-    { x: cropRect.x, y: cropRect.y + cropRect.height }, // bottom-left
-    { x: cropRect.x + cropRect.width, y: cropRect.y + cropRect.height } // bottom-right
-  ];
-  corners.forEach(c => {
-    ctx.fillRect(c.x - cornerSize/2, c.y - cornerSize/2, cornerSize, cornerSize);
-  });
+  // Draw corners
+  const corners = getCorners();
+  ctx.fillStyle = "white";
+  corners.forEach(c => ctx.fillRect(c.x - cornerSize/2, c.y - cornerSize/2, cornerSize, cornerSize));
   ctx.restore();
 }
 
-// Mouse events
+// Get rectangle corners
+function getCorners() {
+  return [
+    {x: cropStartX, y: cropStartY}, // top-left
+    {x: cropStartX + cropWidth, y: cropStartY}, // top-right
+    {x: cropStartX, y: cropStartY + cropHeight}, // bottom-left
+    {x: cropStartX + cropWidth, y: cropStartY + cropHeight} // bottom-right
+  ];
+}
+
+// Mouse events for crop
 canvas.addEventListener("mousedown", (e) => {
-  if (!cropping) return;
+  if (!isCropping) return;
 
   const mouseX = e.offsetX;
   const mouseY = e.offsetY;
 
-  // Check corners for dragging
-  const corners = [
-    { x: cropRect.x, y: cropRect.y, name: "tl" },
-    { x: cropRect.x + cropRect.width, y: cropRect.y, name: "tr" },
-    { x: cropRect.x, y: cropRect.y + cropRect.height, name: "bl" },
-    { x: cropRect.x + cropRect.width, y: cropRect.y + cropRect.height, name: "br" }
-  ];
-
-  for (const corner of corners) {
-    if (
-      mouseX >= corner.x - cornerSize &&
-      mouseX <= corner.x + cornerSize &&
-      mouseY >= corner.y - cornerSize &&
-      mouseY <= corner.y + cornerSize
-    ) {
-      draggingCorner = corner.name;
-      break;
+  // Check if user clicked on a corner
+  const corners = getCorners();
+  for (let i=0; i<corners.length; i++) {
+    const c = corners[i];
+    if (mouseX >= c.x - cornerSize && mouseX <= c.x + cornerSize &&
+        mouseY >= c.y - cornerSize && mouseY <= c.y + cornerSize) {
+      draggingCorner = true;
+      activeCorner = i;
+      return;
     }
   }
+
+  // Otherwise start new crop rectangle
+  cropStartX = mouseX;
+  cropStartY = mouseY;
+  cropWidth = 0;
+  cropHeight = 0;
+  draggingCorner = false;
 });
 
 canvas.addEventListener("mousemove", (e) => {
-  if (!cropping || !draggingCorner) return;
+  if (!isCropping) return;
 
   const mouseX = e.offsetX;
   const mouseY = e.offsetY;
 
-  switch(draggingCorner) {
-    case "tl":
-      cropRect.width += cropRect.x - mouseX;
-      cropRect.height += cropRect.y - mouseY;
-      cropRect.x = mouseX;
-      cropRect.y = mouseY;
-      break;
-    case "tr":
-      cropRect.width = mouseX - cropRect.x;
-      cropRect.height += cropRect.y - mouseY;
-      cropRect.y = mouseY;
-      break;
-    case "bl":
-      cropRect.width += cropRect.x - mouseX;
-      cropRect.x = mouseX;
-      cropRect.height = mouseY - cropRect.y;
-      break;
-    case "br":
-      cropRect.width = mouseX - cropRect.x;
-      cropRect.height = mouseY - cropRect.y;
-      break;
+  if (draggingCorner && activeCorner !== null) {
+    // Adjust rectangle based on active corner
+    switch(activeCorner) {
+      case 0: // top-left
+        cropWidth += cropStartX - mouseX;
+        cropHeight += cropStartY - mouseY;
+        cropStartX = mouseX;
+        cropStartY = mouseY;
+        break;
+      case 1: // top-right
+        cropWidth = mouseX - cropStartX;
+        cropHeight += cropStartY - mouseY;
+        cropStartY = mouseY;
+        break;
+      case 2: // bottom-left
+        cropWidth += cropStartX - mouseX;
+        cropStartX = mouseX;
+        cropHeight = mouseY - cropStartY;
+        break;
+      case 3: // bottom-right
+        cropWidth = mouseX - cropStartX;
+        cropHeight = mouseY - cropStartY;
+        break;
+    }
+    drawCanvas();
+    drawCropRect();
+  } else if (cropWidth === 0 && cropHeight === 0) {
+    cropWidth = mouseX - cropStartX;
+    cropHeight = mouseY - cropStartY;
+    drawCanvas();
+    drawCropRect();
   }
-  drawCanvas();
-  drawCropOverlay();
 });
 
 canvas.addEventListener("mouseup", () => {
-  draggingCorner = null;
-});
-
-canvas.addEventListener("mouseleave", () => {
-  draggingCorner = null;
+  draggingCorner = false;
+  activeCorner = null;
 });
 
 // Apply crop
 function applyCrop() {
-  const imageData = ctx.getImageData(cropRect.x, cropRect.y, cropRect.width, cropRect.height);
-  canvas.width = cropRect.width;
-  canvas.height = cropRect.height;
+  if (cropWidth === 0 || cropHeight === 0) return;
+
+  const imageData = ctx.getImageData(cropStartX, cropStartY, cropWidth, cropHeight);
+  canvas.width = cropWidth;
+  canvas.height = cropHeight;
   ctx.putImageData(imageData, 0, 0);
-  stopCrop();
-        }
+
+  // Reset crop
+  cropWidth = 0;
+  cropHeight = 0;
+  isCropping = false;
+  drawCanvas();
+}
