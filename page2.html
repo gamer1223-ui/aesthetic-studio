@@ -6,15 +6,14 @@
 <title>Aesthetic Studio - Page 2</title>
 <link rel="stylesheet" href="style.css">
 <style>
-  body {
+body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #f9d5e5, #d6b0ff);
     overflow-x: hidden;
-  }
+}
 
-  /* Infinite moving background text */
-  .bg-text {
+.bg-text {
     position: fixed;
     top: 0;
     left: 0;
@@ -25,84 +24,85 @@
     animation: moveText 20s linear infinite;
     pointer-events: none;
     z-index: 0;
-  }
+}
 
-  @keyframes moveText {
+@keyframes moveText {
     0% { transform: translateX(100%) rotate(-25deg);}
     100% { transform: translateX(-100%) rotate(-25deg);}
-  }
+}
 
-  .container {
+.container {
     position: relative;
     z-index: 1;
     padding: 50px 20px;
     text-align: center;
-  }
+    min-height: 100vh;
+}
 
-  h1 {
+h1 {
     font-family: 'Cursive', sans-serif;
     font-weight: bold;
     font-size: 3em;
     color: black;
-    text-shadow: 0 0 10px red, 0 0 20px blue, 0 0 30px green;
-  }
+}
 
-  .gallery {
+.gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
+    gap: 25px;
     margin-top: 40px;
-  }
+}
 
-  .gallery img {
+.gallery img {
     width: 240px; /* approx 6cm */
     height: 320px; /* approx 8cm */
     object-fit: cover;
-    border-radius: 10px;
-    border: 2px solid #fff;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    transition: transform 0.3s;
-  }
+    border-radius: 15px;
+    border: 3px solid white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
 
-  .gallery img:hover {
+.gallery img:hover {
     transform: scale(1.05);
-  }
+    box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
 
-  .btn {
+.btn {
     display: inline-block;
     margin-top: 30px;
-    padding: 15px 30px;
+    padding: 15px 35px;
     font-size: 1.1em;
     font-weight: bold;
     color: white;
     background: linear-gradient(90deg, #ff6fcf, #b565ff);
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
     text-decoration: none;
     transition: transform 0.2s;
-  }
+}
 
-  .btn:hover {
+.btn:hover {
     transform: scale(1.05);
-  }
+}
 
-  .spacer {
-    margin: 20px 0;
-    font-weight: bold;
-    color: black;
-    font-size: 1.2em;
-  }
-
-  footer {
+.footer {
     margin-top: 60px;
     padding: 20px;
     background: rgba(255,255,255,0.6);
     text-align: center;
     font-size: 0.9em;
-    position: relative;
-  }
+}
+
+.spacer {
+    margin: 20px 0;
+    font-weight: bold;
+    color: black;
+    font-size: 1.2em;
+}
 </style>
 </head>
 <body>
@@ -110,22 +110,20 @@
 <div class="bg-text">Aesthetic Studio &nbsp; Aesthetic Studio &nbsp; Aesthetic Studio &nbsp;</div>
 
 <div class="container">
-  <h1>Aesthetic Studio</h1>
+    <h1>Aesthetic Studio</h1>
 
-  <div class="gallery">
-    <img src="https://i.ibb.co/8KZ2K5J/photo1.png" alt="Edited Photo 1">
-    <img src="https://i.ibb.co/7r8R5xP/photo2.png" alt="Edited Photo 2">
-    <img src="https://i.ibb.co/jD9vHRp/photo3.png" alt="Edited Photo 3">
-    <img src="https://i.ibb.co/vLx1r0M/photo4.png" alt="Edited Photo 4">
-  </div>
+    <div class="gallery">
+        <img src="photo1.png" alt="Edited Photo 1">
+        <img src="photo2.png" alt="Edited Photo 2">
+        <img src="photo3.png" alt="Edited Photo 3">
+        <img src="photo4.png" alt="Edited Photo 4">
+    </div>
 
-  <div class="spacer">Do by your own</div>
+    <div class="spacer"></div> <!-- optional space for alignment -->
 
-  <a href="page3.html" class="btn">Create with AI</a>
-
-  <footer>
-    About Us | Privacy Policy | Contact: proboys2012@gmail.com
-  </footer>
+    <footer class="footer">
+        About Us | Privacy Policy | Contact: proboys2012@gmail.com
+    </footer>
 </div>
 
 </body>
