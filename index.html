@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Aesthetic Studio</title>
 
-<link rel="stylesheet" href="style.css">
-
-<!-- Cursive font for Aesthetic Studio -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
-font-family:Arial, sans-serif;
-background:#f5f5f7;
+font-family:Arial;
+background:white;
 text-align:center;
 }
 
@@ -27,10 +25,10 @@ align-items:center;
 padding:20px 40px;
 }
 
-/* Website title */
 .site-title{
+
 font-family:'Dancing Script',cursive;
-font-size:45px;
+font-size:48px;
 font-weight:bold;
 
 background:linear-gradient(90deg, red, orange, yellow, green, blue, purple);
@@ -40,6 +38,7 @@ background-size:400%;
 color:transparent;
 
 animation:rgbGlow 6s linear infinite;
+
 }
 
 @keyframes rgbGlow{
@@ -47,65 +46,59 @@ animation:rgbGlow 6s linear infinite;
 100%{background-position:400%}
 }
 
-/* Logo */
 .logo{
 width:60px;
-height:60px;
 }
-
-/* Welcome section */
 
 .welcome{
-margin-top:120px;
+margin-top:150px;
 }
-
-.welcome h2{
-font-size:32px;
-}
-
-.welcome p{
-font-size:18px;
-color:#444;
-}
-
-/* Dive button */
 
 .dive-btn{
-margin-top:20px;
-padding:14px 36px;
+
+margin-top:30px;
+
+padding:16px 40px;
+
 font-size:18px;
+
 border:none;
-border-radius:10px;
-background:#4CAF50;
+
+border-radius:12px;
+
+background:#5b5bff;
+
 color:white;
+
 cursor:pointer;
+
 }
 
-/* Footer */
-
 footer{
-position:fixed;
-bottom:15px;
-width:100%;
+
+margin-top:200px;
+
 }
 
 footer a{
-margin:0 15px;
+
+margin:0 20px;
+
 text-decoration:none;
+
 color:#333;
-font-size:14px;
+
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-<div class="site-title">
-Aesthetic Studio
-</div>
+<div class="site-title">Aesthetic Studio</div>
 
 <img src="logo.png" class="logo">
 
@@ -114,11 +107,11 @@ Aesthetic Studio
 
 <div class="welcome">
 
-<h2>Welcome!</h2>
+<h2>Welcome to the Pro Photo Editor</h2>
 
-<p>Create stunning photos and download in HD quality up to 1440p!</p>
+<p>Create stunning photos with stickers, filters, crop tools and download in HD quality.</p>
 
-<button class="dive-btn" onclick="diveIn()">Dive In</button>
+<button class="dive-btn" onclick="openPage2()">Dive In</button>
 
 </div>
 
@@ -126,7 +119,9 @@ Aesthetic Studio
 <footer>
 
 <a href="#">About Us</a>
+
 <a href="#">Privacy Policy</a>
+
 <a href="#">Contact</a>
 
 </footer>
@@ -134,11 +129,15 @@ Aesthetic Studio
 
 <script>
 
-function diveIn(){
-window.location.href="home.html";
+function openPage2(){
+
+window.location.href="./page2.html";
+
 }
 
 </script>
 
+
 </body>
+
 </html>
