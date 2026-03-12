@@ -1,272 +1,132 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Aesthetic Studio</title>
-
+<title>Aesthetic Studio - Page 2</title>
+<link rel="stylesheet" href="style.css">
 <style>
-
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-
-/* light pink + purple blend */
-
-background:linear-gradient(135deg,#ffe6f2,#f0e6ff,#ffeaf6);
-
-}
-
-
-/* HEADER */
-
-header{
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-padding:25px 60px;
-
-}
-
-.title{
-
-font-size:40px;
-font-weight:bold;
-
-}
-
-.logo{
-
-width:60px;
-
-}
-
-
-/* TEXT INTRO */
-
-.intro{
-
-text-align:center;
-margin-top:30px;
-
-}
-
-.intro h2{
-
-font-size:26px;
-
-}
-
-.intro p{
-
-color:#555;
-margin-top:5px;
-
-}
-
-
-/* PHOTO GRID */
-
-.gallery{
-
-max-width:1100px;
-margin:60px auto;
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:50px;
-
-padding:0 40px;
-
-}
-
-
-/* PHOTO CARD */
-
-.photo{
-
-width:100%;
-height:340px;
-
-border-radius:18px;
-
-overflow:hidden;
-
-box-shadow:0 10px 25px rgba(0,0,0,0.25);
-
-}
-
-.photo img{
-
-width:100%;
-height:100%;
-
-object-fit:cover;
-
-}
-
-
-/* TEXT BETWEEN */
-
-.info-text{
-
-grid-column:span 2;
-
-text-align:center;
-
-font-size:18px;
-
-color:#444;
-
-margin-top:10px;
-
-}
-
-
-/* BUTTON AREA */
-
-.buttons{
-
-text-align:center;
-
-margin-top:40px;
-
-}
-
-
-/* BUTTONS */
-
-.btn{
-
-padding:14px 30px;
-
-font-size:16px;
-
-border:none;
-
-border-radius:12px;
-
-cursor:pointer;
-
-color:white;
-
-background:#6a5cff;
-
-margin:10px;
-
-box-shadow:0 5px 12px rgba(0,0,0,0.25);
-
-}
-
-.ai{
-
-background:#ff5ecf;
-
-}
-
-
-/* FOOTER */
-
-footer{
-
-text-align:center;
-
-margin-top:200px;
-
-padding-bottom:40px;
-
-}
-
-footer a{
-
-margin:0 20px;
-
-text-decoration:none;
-
-color:black;
-
-font-weight:bold;
-
-}
-
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f9d5e5, #d6b0ff);
+    overflow-x: hidden;
+  }
+
+  /* Infinite moving background text */
+  .bg-text {
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 5em;
+    color: rgba(200,200,200,0.2);
+    white-space: nowrap;
+    transform: rotate(-25deg);
+    animation: moveText 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes moveText {
+    0% { transform: translateX(100%) rotate(-25deg);}
+    100% { transform: translateX(-100%) rotate(-25deg);}
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    padding: 50px 20px;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: 'Cursive', sans-serif;
+    font-weight: bold;
+    font-size: 3em;
+    color: black;
+    text-shadow: 0 0 10px red, 0 0 20px blue, 0 0 30px green;
+  }
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .gallery img {
+    width: 240px; /* approx 6cm */
+    height: 320px; /* approx 8cm */
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+  }
+
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+
+  .btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(90deg, #ff6fcf, #b565ff);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+  }
+
+  .spacer {
+    margin: 20px 0;
+    font-weight: bold;
+    color: black;
+    font-size: 1.2em;
+  }
+
+  footer {
+    margin-top: 60px;
+    padding: 20px;
+    background: rgba(255,255,255,0.6);
+    text-align: center;
+    font-size: 0.9em;
+    position: relative;
+  }
 </style>
-
 </head>
-
 <body>
 
+<div class="bg-text">Aesthetic Studio &nbsp; Aesthetic Studio &nbsp; Aesthetic Studio &nbsp;</div>
 
-<header>
+<div class="container">
+  <h1>Aesthetic Studio</h1>
 
-<div class="title">Aesthetic Studio</div>
+  <div class="gallery">
+    <img src="https://i.ibb.co/8KZ2K5J/photo1.png" alt="Edited Photo 1">
+    <img src="https://i.ibb.co/7r8R5xP/photo2.png" alt="Edited Photo 2">
+    <img src="https://i.ibb.co/jD9vHRp/photo3.png" alt="Edited Photo 3">
+    <img src="https://i.ibb.co/vLx1r0M/photo4.png" alt="Edited Photo 4">
+  </div>
 
-<img src="logo.png" class="logo">
+  <div class="spacer">Do by your own</div>
 
-</header>
+  <a href="page3.html" class="btn">Create with AI</a>
 
-
-<div class="intro">
-
-<h2>Create beautiful photos</h2>
-
-<p>Crop, design, add stickers and create aesthetic images easily.</p>
-
+  <footer>
+    About Us | Privacy Policy | Contact: proboys2012@gmail.com
+  </footer>
 </div>
-
-
-<div class="gallery">
-
-<div class="photo">
-<img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0">
-</div>
-
-<div class="photo">
-<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-</div>
-
-<div class="photo">
-<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-</div>
-
-<div class="photo">
-<img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97">
-</div>
-
-<div class="info-text">
-
-Create stunning edits with powerful tools.  
-Design your photos just like professional editors.
-
-</div>
-
-</div>
-
-
-<div class="buttons">
-
-<button class="btn">Do By Your Own</button>
-
-<button class="btn ai">Create With AI</button>
-
-</div>
-
-
-<footer>
-
-<a href="#">About Us</a>
-<a href="#">Privacy Policy</a>
-<a href="#">Contact</a>
-
-</footer>
-
 
 </body>
-
 </html>
