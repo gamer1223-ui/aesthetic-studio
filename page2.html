@@ -1,115 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Aesthetic Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-
 <style>
 
 body{
+
 margin:0;
-font-family:Arial, sans-serif;
-background:#f5f5f7;
+
+font-family:Arial;
+
 text-align:center;
+
+background:linear-gradient(135deg,#ffd6ec,#e5d4ff);
+
 }
 
+
+/* Header */
+
 header{
+
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
+
 padding:20px 40px;
+
 }
 
 .site-title{
-font-family:'Dancing Script',cursive;
-font-size:40px;
+
+font-size:36px;
+
 font-weight:bold;
+
 }
 
 .logo{
-width:60px;
+
+width:55px;
+
 }
 
-.samples{
+
+/* Photo grid */
+
+.gallery{
+
 display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:20px;
-max-width:700px;
-margin:60px auto;
+
+grid-template-columns:1fr 1fr;
+
+gap:40px;
+
+padding:60px;
+
+max-width:900px;
+
+margin:auto;
+
 }
 
-.sample-box{
-background:white;
-border-radius:12px;
-overflow:hidden;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
 
-.sample-box img{
+/* Images */
+
+.photo{
+
 width:100%;
-height:200px;
+
+aspect-ratio:16/9;
+
+border-radius:14px;
+
+overflow:hidden;
+
+box-shadow:0 6px 14px rgba(0,0,0,0.2);
+
+}
+
+.photo img{
+
+width:100%;
+
+height:100%;
+
 object-fit:cover;
+
 }
 
-.own-btn{
-margin-top:20px;
-padding:14px 30px;
-font-size:18px;
-border:none;
-border-radius:10px;
-background:#4CAF50;
-color:white;
-cursor:pointer;
-}
 
-.ai-button{
-position:fixed;
-bottom:80px;
-right:30px;
-background:#333;
-color:white;
-font-size:24px;
-width:50px;
-height:50px;
-border-radius:50%;
+/* Center button */
+
+.center-button{
+
+grid-column:span 2;
+
 display:flex;
-align-items:center;
+
 justify-content:center;
-cursor:pointer;
+
+align-items:center;
+
 }
 
-.ai-panel{
-display:none;
-position:fixed;
-bottom:140px;
-right:30px;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 4px 15px rgba(0,0,0,0.2);
-width:250px;
+.edit-btn{
+
+padding:18px 40px;
+
+font-size:20px;
+
+border:none;
+
+border-radius:14px;
+
+background:#6a5cff;
+
+color:white;
+
+cursor:pointer;
+
 }
+
+
+/* Footer */
 
 footer{
-position:fixed;
-bottom:10px;
-width:100%;
+
+margin-top:200px;
+
+padding:30px;
+
 }
 
 footer a{
-margin:0 15px;
+
+margin:0 20px;
+
 text-decoration:none;
-color:#333;
+
+color:black;
+
+font-weight:bold;
+
 }
 
 </style>
+
 </head>
 
 <body>
+
 
 <header>
 
@@ -119,73 +169,57 @@ color:#333;
 
 </header>
 
-<div class="samples">
 
-<div class="sample-box">
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+<div class="gallery">
+
+<div class="photo">
+
+<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
+
 </div>
 
-<div class="sample-box">
-<img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f">
+
+<div class="photo">
+
+<img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115">
+
 </div>
 
-<div class="sample-box">
-<img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e">
+
+<div class="center-button">
+
+<button class="edit-btn">Do By Your Own</button>
+
 </div>
 
-<div class="sample-box">
+
+<div class="photo">
+
+<img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc">
+
+</div>
+
+
+<div class="photo">
+
 <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde">
-</div>
 
 </div>
 
-<button class="own-btn">Do by your own</button>
-
-<div class="ai-button" onclick="toggleAI()">⌄</div>
-
-<div class="ai-panel" id="aiPanel">
-
-<p>Upload photo for AI editing</p>
-
-<input type="file">
-
-<br><br>
-
-<button onclick="generateAI()">✔ Generate</button>
-
-<p id="waitMsg" style="display:none;">Wait for a while...</p>
-
 </div>
+
 
 <footer>
 
 <a href="#">About Us</a>
+
 <a href="#">Privacy Policy</a>
+
 <a href="#">Contact</a>
 
 </footer>
 
-<script>
-
-function toggleAI(){
-
-let panel = document.getElementById("aiPanel");
-
-if(panel.style.display === "block"){
-panel.style.display = "none";
-}else{
-panel.style.display = "block";
-}
-
-}
-
-function generateAI(){
-
-document.getElementById("waitMsg").style.display="block";
-
-}
-
-</script>
 
 </body>
+
 </html>
