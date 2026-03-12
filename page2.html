@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aesthetic Studio</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Cursive font for Aesthetic Studio -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#f5f5f7;
+text-align:center;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+}
+
+.site-title{
+font-family:'Dancing Script',cursive;
+font-size:45px;
+font-weight:bold;
+
+background:linear-gradient(90deg, red, orange, yellow, green, blue, purple);
+background-size:400%;
+
+-webkit-background-clip:text;
+color:transparent;
+
+animation:rgbGlow 6s linear infinite;
+}
+
+@keyframes rgbGlow{
+0%{background-position:0%}
+100%{background-position:400%}
+}
+
+.logo{
+width:60px;
+height:60px;
+}
+
+.welcome{
+margin-top:120px;
+}
+
+.welcome h2{
+font-size:32px;
+}
+
+.welcome p{
+font-size:18px;
+color:#444;
+}
+
+.dive-btn{
+margin-top:20px;
+padding:14px 36px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#4CAF50;
+color:white;
+cursor:pointer;
+}
+
+footer{
+position:fixed;
+bottom:15px;
+width:100%;
+}
+
+footer a{
+margin:0 15px;
+text-decoration:none;
+color:#333;
+font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="site-title">
+Aesthetic Studio
+</div>
+
+<img src="logo.png" class="logo">
+
+</header>
+
+<div class="welcome">
+
+<h2>Welcome!</h2>
+
+<p>Create stunning photos and download in HD quality up to 1440p!</p>
+
+<button class="dive-btn" onclick="diveIn()">Dive In</button>
+
+</div>
+
+<footer>
+
+<a href="#">About Us</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Contact</a>
+
+</footer>
+
+<script>
+
+function diveIn(){
+window.location.href="page2.html";
+}
+
+</script>
+
+</body>
+</html>
