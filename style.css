@@ -161,3 +161,67 @@ button:hover {
 .theme-light { background: #f5f5f5; color: #000; }
 .theme-dark { background: #111; color: #fff; }
 .theme-pink { background: #ff77ff; color: #fff; }
+/* ===== WELCOME PAGE STYLES ===== */
+.welcome-page{
+  background:#f5f5f7;
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  text-align:center;
+}
+
+.welcome-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+}
+
+.site-logo{
+  width:55px;
+  height:55px;
+}
+
+.site-title{
+  font-family:'Dancing Script', cursive;
+  font-size:44px;
+  font-weight:bold;
+
+  background:linear-gradient(90deg, red, orange, yellow, green, blue, purple);
+  background-size:400%;
+  -webkit-background-clip:text;
+  color:transparent;
+
+  animation:rgbGlow 6s linear infinite;
+}
+
+@keyframes rgbGlow{
+  0%{background-position:0%}
+  100%{background-position:400%}
+}
+
+.welcome-main{
+  margin-top:100px;
+}
+
+.dive-btn{
+  margin-top:20px;
+  padding:14px 36px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  background:#4CAF50;
+  color:white;
+  cursor:pointer;
+}
+
+.site-footer{
+  position:fixed;
+  bottom:15px;
+  width:100%;
+}
+
+.site-footer a{
+  margin:0 15px;
+  color:#333;
+  text-decoration:none;
+}
