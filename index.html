@@ -1,83 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Aesthetic Studio V13</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetic Studio</title>
 
-  <!-- JS Files (all your 20 JS files) -->
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/animations.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/brush.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/crop.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/download.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/editor.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/export-advanced.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/filters-extended.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/filters.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/history.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/layer-manager.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/neon.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/quality.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/scrolllabel-text-panel.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/sliders.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/stickers-animated.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/stickers.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/text-arrangement.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/text-styles.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/theme.js" defer></script>
-  <script src="https://raw.githubusercontent.com/gamer1223-ui/aesthetic-studio/main/ui.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- cursive font only for the title -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
-<body>
 
-  <!-- RGB Background Canvas -->
-  <canvas id="backgroundCanvas"></canvas>
+<body class="welcome-page">
 
-  <!-- Main Editor Canvas -->
-  <canvas id="canvas"></canvas>
+  <header class="welcome-header">
+    <div class="site-title">Aesthetic Studio</div>
+    <!-- put your logo file in /images/logo.png -->
+    <img src="images/logo.png" class="site-logo" alt="Aesthetic Studio logo">
+  </header>
 
-  <!-- Toolbar / Buttons -->
-  <div id="toolbar">
-    <button class="theme-button" onclick="applyTheme('light')">Light</button>
-    <button class="theme-button" onclick="applyTheme('dark')">Dark</button>
-    <button class="theme-button" onclick="applyTheme('pink')">Pink</button>
-    <button onclick="undo()">Undo</button>
-    <button onclick="redo()">Redo</button>
-    <button onclick="exportHighQuality('1440p')">Export 1440p</button>
-  </div>
+  <main class="welcome-main">
+    <h2>Welcome!</h2>
+    <p>Create stunning photos and download in HD quality up to 1440p!</p>
 
-  <!-- Scrollable Panels -->
-  <div id="colorPanel"></div>
-  <div id="fontPanel"></div>
+    <button class="dive-btn" onclick="goHome()">Dive In</button>
+  </main>
 
-  <!-- Text Input -->
-  <div id="textInputContainer">
-    <input type="text" id="textInput" placeholder="Write your text..." />
-  </div>
+  <footer class="site-footer">
+    <a href="#">About Us</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Contact</a>
+  </footer>
 
-  <!-- Initialize Scroll Panels / Example -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Example: color panel
-      createScrollablePanel("colorPanel", [
-        { name: "Red", color: "#ff0000", onClick: () => applyTextColor("#ff0000") },
-        { name: "Green", color: "#00ff00", onClick: () => applyTextColor("#00ff00") },
-        { name: "Blue", color: "#0000ff", onClick: () => applyTextColor("#0000ff") },
-        { name: "Yellow", color: "#ffff00", onClick: () => applyTextColor("#ffff00") },
-        // add more colors as needed
-      ], { direction: "row", iconSize: "30px", maxHeight: "60px" });
-
-      // Example: font panel
-      createScrollablePanel("fontPanel", [
-        { name: "Arial", onClick: () => applyFont("Arial") },
-        { name: "Verdana", onClick: () => applyFont("Verdana") },
-        { name: "Comic Sans", onClick: () => applyFont("Comic Sans MS") },
-        { name: "Times New Roman", onClick: () => applyFont("Times New Roman") },
-        // add more fonts as needed
-      ], { direction: "row", iconSize: "24px", maxHeight: "60px" });
-    });
+    function goHome(){
+      window.location.href = "home.html"; 
+    }
   </script>
 
 </body>
