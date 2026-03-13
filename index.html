@@ -13,36 +13,35 @@
 body{
 margin:0;
 font-family:Arial;
-height:100vh;
 
-/* GREEN BLENDED BACKGROUND */
+/* LIGHT GREEN BLEND BACKGROUND */
 
-background:linear-gradient(135deg,#0f3d2e,#1f6f54,#e9fff4);
+background:linear-gradient(135deg,#5fbf9f,#a7e6d3,#ffffff);
 
 color:white;
 
 display:flex;
 align-items:center;
 justify-content:center;
-overflow:hidden;
+
+min-height:100vh;
+text-align:center;
 }
 
 /* MAIN CONTAINER */
 
 .container{
-text-align:center;
 max-width:900px;
-padding:40px;
-position:relative;
-z-index:1;
+padding:40px 20px;
 }
 
 /* RGB TITLE */
 
 .title{
-font-size:72px;
+
+font-size:64px;
 font-weight:bold;
-margin-bottom:30px;
+margin-bottom:25px;
 
 background:linear-gradient(90deg,red,orange,yellow,green,cyan,blue,purple);
 background-size:400%;
@@ -51,100 +50,80 @@ background-size:400%;
 -webkit-text-fill-color:transparent;
 
 animation:rgbMove 6s linear infinite;
+
 }
 
 @keyframes rgbMove{
+
 0%{background-position:0%}
 100%{background-position:400%}
+
 }
 
 /* BIG TEXT */
 
 .big-text{
-font-size:36px;
+
+font-size:34px;
 font-weight:bold;
+color:white;
 margin-bottom:20px;
+
 }
 
 /* SMALL DESCRIPTION */
 
 .small-text{
+
 font-size:18px;
-color:#d7f5e6;
-line-height:1.6;
-margin-bottom:30px;
+color:#e9f7f2;
+line-height:1.5;
+margin-bottom:25px;
+
 }
 
 /* EMAIL */
 
 .email{
+
 font-size:16px;
-color:#c7e9da;
-margin-bottom:20px;
+color:#eafaf4;
+margin-bottom:30px;
+
 }
 
 /* DIVE BUTTON */
 
 .dive-btn{
-margin-top:20px;
-background:white;
-color:#0f3d2e;
-padding:14px 28px;
+
+background:black;
+color:white;
+
+padding:15px 36px;
+
 font-size:18px;
-border:none;
-border-radius:10px;
-cursor:pointer;
 font-weight:bold;
 
-transition:transform 0.2s ease, box-shadow 0.2s ease;
+border:2px solid #e8fff7;
+
+border-radius:12px;
+
+cursor:pointer;
+
+transition:all 0.2s ease;
+
 }
 
 .dive-btn:hover{
+
 transform:translateY(-3px);
-box-shadow:0 8px 20px rgba(0,0,0,0.25);
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
+
 }
 
 .dive-btn:active{
+
 transform:scale(0.95);
-}
-
-/* PARTICLES BACKGROUND */
-
-.particles{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-overflow:hidden;
-}
-
-.particles span{
-position:absolute;
-width:6px;
-height:6px;
-background:white;
-border-radius:50%;
-opacity:0.5;
-animation:float 10s linear infinite;
-}
-
-@keyframes float{
-
-0%{
-transform:translateY(100vh) scale(0);
-opacity:0;
-}
-
-50%{
-opacity:0.7;
-}
-
-100%{
-transform:translateY(-10vh) scale(1);
-opacity:0;
-}
 
 }
 
@@ -153,22 +132,6 @@ opacity:0;
 </head>
 
 <body>
-
-<!-- PARTICLES -->
-
-<div class="particles">
-
-<span style="left:10%;animation-delay:0s"></span>
-<span style="left:20%;animation-delay:2s"></span>
-<span style="left:30%;animation-delay:4s"></span>
-<span style="left:40%;animation-delay:1s"></span>
-<span style="left:50%;animation-delay:3s"></span>
-<span style="left:60%;animation-delay:5s"></span>
-<span style="left:70%;animation-delay:2s"></span>
-<span style="left:80%;animation-delay:4s"></span>
-<span style="left:90%;animation-delay:1s"></span>
-
-</div>
 
 <div class="container">
 
@@ -181,9 +144,7 @@ Create Ideas. Shape Design. Build Beauty.
 </div>
 
 <div class="small-text">
-Aesthetic Studio is a creative digital space where imagination turns into design. 
-Explore visual inspiration, experiment with editing tools, and transform simple 
-images into stunning aesthetic creations.
+A simple space to explore creative design and visual inspiration.
 </div>
 
 <div class="email">
