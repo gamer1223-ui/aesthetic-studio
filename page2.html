@@ -41,10 +41,10 @@ animation:moveWords 22s linear infinite;
 
 /* MAIN CONTAINER */
 .container{
-width:100%;
-max-width:1000px;
-margin:0; /* push layout to left side */
-padding:40px;
+max-width:900px;
+margin-left:40px; /* force layout to start from left */
+margin-right:auto;
+padding:40px 40px 40px 0;
 position:relative;
 z-index:1;
 }
@@ -53,7 +53,8 @@ z-index:1;
 .site-title{
 font-weight:900;
 margin-bottom:60px;
-text-align:left; /* force title to left side */
+text-align:left;
+width:100%;
 }
 
 .site-title .line{
