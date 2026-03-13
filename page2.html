@@ -38,14 +38,21 @@ color:#e6e6e6;
 font-size:80px;
 font-weight:bold;
 opacity:0.25;
-transform:rotate(-25deg);
 white-space:nowrap;
-animation:moveWords 20s linear infinite;
+transform:rotate(-35deg);
+animation:moveWords 22s linear infinite;
 }
 
+/* diagonal rocket style movement */
+
 @keyframes moveWords{
-0%{transform:translate(-20%,-20%) rotate(-25deg);}
-100%{transform:translate(120%,120%) rotate(-25deg);}
+0%{
+transform:translateX(120vw) translateY(-20vh) rotate(-35deg);
+}
+
+100%{
+transform:translateX(-120vw) translateY(120vh) rotate(-35deg);
+}
 }
 
 /* MAIN CONTAINER */
@@ -56,6 +63,15 @@ margin:auto;
 padding:40px;
 position:relative;
 z-index:1;
+}
+
+/* TOP WEBSITE TITLE */
+
+.site-title{
+font-size:56px;
+font-weight:bold;
+text-align:center;
+margin-bottom:40px;
 }
 
 /* BIG TITLE */
@@ -119,24 +135,43 @@ margin-top:80px;
 font-size:16px;
 }
 
+.footer-links{
+margin-top:20px;
+font-weight:bold;
+}
+
+.email{
+margin-top:10px;
+font-size:16px;
+}
+
 </style>
 
 </head>
 
 <body>
 
-<!-- Moving Background Words -->
+<!-- Moving Background Words (each in its own lane) -->
 
 <div class="bg-words">
-<span style="top:5%;left:-20%;animation-delay:0s;">AESTHETIC STUDIO</span>
-<span style="top:20%;left:-30%;animation-delay:3s;">AESTHETIC STUDIO</span>
-<span style="top:40%;left:-25%;animation-delay:6s;">AESTHETIC STUDIO</span>
-<span style="top:60%;left:-35%;animation-delay:9s;">AESTHETIC STUDIO</span>
-<span style="top:75%;left:-20%;animation-delay:12s;">AESTHETIC STUDIO</span>
-<span style="top:90%;left:-30%;animation-delay:15s;">AESTHETIC STUDIO</span>
+
+<span style="top:5%;">AESTHETIC STUDIO</span>
+
+<span style="top:25%;">AESTHETIC STUDIO</span>
+
+<span style="top:45%;">AESTHETIC STUDIO</span>
+
+<span style="top:65%;">AESTHETIC STUDIO</span>
+
+<span style="top:85%;">AESTHETIC STUDIO</span>
+
 </div>
 
 <div class="container">
+
+<div class="site-title">
+Aesthetic Studio
+</div>
 
 <div class="main-title">
 Explore more ideas. Where creativity meets imagination.
@@ -181,6 +216,14 @@ Try our AI
 <footer>
 
 Privacy Policy
+
+<div class="footer-links">
+About Us | Contact Us
+</div>
+
+<div class="email">
+proboys2012@gmail.com
+</div>
 
 </footer>
 
