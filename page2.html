@@ -140,8 +140,17 @@ box-shadow:0 8px 20px rgba(0,0,0,0.25);
 
 /* click animation for ALL buttons */
 button:active{
-transform:scale(0.95);
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
+transform:scale(0.90);
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* remove blue mobile tap highlight */
+button{
+-webkit-tap-highlight-color: transparent;
+}
+
+button:focus{
+outline:none;
 }
 
 .ai-button:hover{
@@ -194,7 +203,9 @@ Every edit tells a story. Adjust, crop and design your perfect aesthetic.
 Your creativity deserves a canvas. Turn simple images into visual art.
 </div><img src="photo3.png" class="photo"><div class="text">
 Let your imagination guide the design. Build something uniquely yours.
-</div><img src="photo4.png" class="photo"><div class="ai-section">
+</div><img src="photo4.png" class="photo"><div style="margin:30px 0;">
+<button class="ai-button">Edit On Your Own</button>
+</div><div class="ai-section">
 <div class="ai-text">Try our AI</div>
 <button class="ai-button">Try our AI</button>
 </div><footer>
