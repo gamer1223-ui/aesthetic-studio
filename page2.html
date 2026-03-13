@@ -156,47 +156,57 @@ const el2 = document.getElementById("line2");
 
 let i = 0;
 let j = 0;
-let deleting = false;
+let phase = "type1"; // type1 -> type2 -> wait -> delete2 -> delete1
 
 function typeEffect(){
 
-if(!deleting){
-
+if(phase === "type1"){
 if(i < text1.length){
 el1.textContent += text1.charAt(i);
 i++;
+setTimeout(typeEffect,120);
+return;
+}
+phase = "type2";
 }
 
-else if(j < text2.length){
+if(phase === "type2"){
+if(j < text2.length){
 el2.textContent += text2.charAt(j);
 j++;
+setTimeout(typeEffect,120);
+return;
+}
+phase = "wait";
+setTimeout(typeEffect,2000);
+return;
 }
 
-else{
-setTimeout(()=>{deleting=true;},2000);
+if(phase === "wait"){
+phase = "delete2";
 }
 
-}
-
-else{
-
+if(phase === "delete2"){
 if(j > 0){
-el2.textContent = text2.substring(0,j-1);
 j--;
+el2.textContent = text2.substring(0,j);
+setTimeout(typeEffect,80);
+return;
+}
+phase = "delete1";
 }
 
-else if(i > 0){
-el1.textContent = text1.substring(0,i-1);
+if(phase === "delete1"){
+if(i > 0){
 i--;
+el1.textContent = text1.substring(0,i);
+setTimeout(typeEffect,80);
+return;
+}
+phase = "type1";
 }
 
-else{
-deleting=false;
-}
-
-}
-
-setTimeout(typeEffect,150);
+setTimeout(typeEffect,120);
 }
 
 typeEffect();
