@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
+<!DOCTYPE html><html><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Aesthetic Studio</title>
-
-<style>
-
+<title>Aesthetic Studio</title><style>
 body{
 margin:0;
 font-family:Arial;
-
-/* Pink → Purple gradient */
 background:linear-gradient(to right,#ffb6e6,#bfa0ff);
 color:black;
 }
-
-/* BACKGROUND MOVING TEXT */
 
 .bg-words{
 position:fixed;
@@ -43,19 +31,14 @@ transform:rotate(-35deg);
 animation:moveWords 22s linear infinite;
 }
 
-/* diagonal rocket style movement */
-
 @keyframes moveWords{
 0%{
 transform:translateX(120vw) translateY(-20vh) rotate(-35deg);
 }
-
 100%{
 transform:translateX(-120vw) translateY(120vh) rotate(-35deg);
 }
 }
-
-/* MAIN CONTAINER */
 
 .container{
 max-width:900px;
@@ -65,16 +48,20 @@ position:relative;
 z-index:1;
 }
 
-/* TOP WEBSITE TITLE */
-
 .site-title{
-font-size:56px;
-font-weight:bold;
 text-align:center;
-margin-bottom:40px;
+font-weight:900;
+line-height:1.1;
+margin-bottom:50px;
 }
 
-/* BIG TITLE */
+.site-title .top{
+font-size:72px;
+}
+
+.site-title .bottom{
+font-size:72px;
+}
 
 .main-title{
 font-size:48px;
@@ -82,15 +69,11 @@ font-weight:bold;
 margin-bottom:40px;
 }
 
-/* TEXT BLOCK */
-
 .text{
 font-size:28px;
 font-weight:bold;
 margin:40px 0;
 }
-
-/* PHOTO */
 
 .photo{
 width:100%;
@@ -101,8 +84,6 @@ border-radius:18px;
 box-shadow:0 10px 25px rgba(0,0,0,0.3);
 margin-bottom:40px;
 }
-
-/* AI SECTION */
 
 .ai-section{
 text-align:center;
@@ -115,8 +96,6 @@ font-size:16px;
 margin-bottom:10px;
 }
 
-/* BUTTON */
-
 .ai-button{
 background:black;
 color:white;
@@ -126,8 +105,6 @@ border-radius:10px;
 font-size:18px;
 cursor:pointer;
 }
-
-/* FOOTER */
 
 footer{
 text-align:center;
@@ -144,91 +121,31 @@ font-weight:bold;
 margin-top:10px;
 font-size:16px;
 }
-
-</style>
-
-</head>
-
-<body>
-
-<!-- Moving Background Words (each in its own lane) -->
-
-<div class="bg-words">
-
+</style></head><body><div class="bg-words">
 <span style="top:5%;">AESTHETIC STUDIO</span>
-
 <span style="top:25%;">AESTHETIC STUDIO</span>
-
 <span style="top:45%;">AESTHETIC STUDIO</span>
-
 <span style="top:65%;">AESTHETIC STUDIO</span>
-
 <span style="top:85%;">AESTHETIC STUDIO</span>
-
-</div>
-
-<div class="container">
-
-<div class="site-title">
-Aesthetic Studio
-</div>
-
-<div class="main-title">
+</div><div class="container"><div class="site-title">
+<div class="top">Aesthetic</div>
+<div class="bottom">Studio</div>
+</div><div class="main-title">
 Explore more ideas. Where creativity meets imagination.
-</div>
-
-<div class="text">
+</div><div class="text">
 A single photo can hold a thousand emotions. Start creating something beautiful.
-</div>
-
-<img src="photo1.png" class="photo">
-
-<div class="text">
+</div><img src="photo1.png" class="photo"><div class="text">
 Every edit tells a story. Adjust, crop and design your perfect aesthetic.
-</div>
-
-<img src="photo2.png" class="photo">
-
-<div class="text">
+</div><img src="photo2.png" class="photo"><div class="text">
 Your creativity deserves a canvas. Turn simple images into visual art.
-</div>
-
-<img src="photo3.png" class="photo">
-
-<div class="text">
+</div><img src="photo3.png" class="photo"><div class="text">
 Let your imagination guide the design. Build something uniquely yours.
-</div>
-
-<img src="photo4.png" class="photo">
-
-<div class="ai-section">
-
-<div class="ai-text">
-Try our AI
-</div>
-
-<button class="ai-button">
-Try our AI
-</button>
-
-</div>
-
-<footer>
-
+</div><img src="photo4.png" class="photo"><div class="ai-section">
+<div class="ai-text">Try our AI</div>
+<button class="ai-button">Try our AI</button>
+</div><footer>
 Privacy Policy
-
-<div class="footer-links">
-About Us | Contact Us
-</div>
-
-<div class="email">
-proboys2012@gmail.com
-</div>
-
-</footer>
-
-</div>
-
-</body>
-
+<div class="footer-links">About Us | Contact Us</div>
+<div class="email">proboys2012@gmail.com</div>
+</footer></div></body>
 </html>
