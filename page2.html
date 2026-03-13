@@ -37,7 +37,6 @@ animation:moveWords 22s linear infinite;
 100%{transform:translateX(-120vw) translateY(120vh) rotate(-35deg);} 
 }
 
-/* MAIN CONTAINER */
 .container{
 max-width:900px;
 margin:auto;
@@ -46,43 +45,17 @@ position:relative;
 z-index:1;
 }
 
-/* BIG TOP TITLE WITH TYPING */
+/* BIG TITLE */
 .site-title{
 text-align:center;
 font-weight:900;
-line-height:1.1;
 margin-bottom:60px;
 }
 
-.typing{
-display:inline-block;
-overflow:hidden;
-white-space:nowrap;
-border-right:4px solid black;
-animation:typing 4s steps(12,end) infinite, blink .7s step-end infinite;
+.site-title .line{
 font-size:72px;
-}
-
-.typing-delay{
-display:inline-block;
-overflow:hidden;
-white-space:nowrap;
-border-right:4px solid black;
-animation:typing 4s steps(8,end) infinite, blink .7s step-end infinite;
-animation-delay:0.5s;
-font-size:72px;
-}
-
-@keyframes typing{
-0%{width:0}
-40%{width:100%}
-60%{width:100%}
-100%{width:0}
-}
-
-@keyframes blink{
-0%,100%{border-color:transparent}
-50%{border-color:black}
+line-height:1.1;
+min-height:80px;
 }
 
 /* MAIN TEXT */
@@ -156,9 +129,8 @@ font-size:16px;
 <span style="top:80%;">AESTHETIC STUDIO</span>
 <span style="top:90%;">AESTHETIC STUDIO</span>
 </div><div class="container"><!-- BIG TITLE --><div class="site-title">
-<div class="typing">Aesthetic</div>
-<br>
-<div class="typing-delay">Studio</div>
+<div class="line" id="line1"></div>
+<div class="line" id="line2"></div>
 </div><div class="main-title">
 Explore more ideas. Where creativity meets imagination.
 </div><div class="text">
@@ -176,5 +148,57 @@ Let your imagination guide the design. Build something uniquely yours.
 Privacy Policy
 <div class="footer-links">About Us | Contact Us</div>
 <div class="email">proboys2012@gmail.com</div>
-</footer></div></body>
+</footer></div><script>
+const text1 = "Aesthetic";
+const text2 = "Studio";
+const el1 = document.getElementById("line1");
+const el2 = document.getElementById("line2");
+
+let i = 0;
+let j = 0;
+let deleting = false;
+
+function typeEffect(){
+
+if(!deleting){
+
+if(i < text1.length){
+el1.textContent += text1.charAt(i);
+i++;
+}
+
+else if(j < text2.length){
+el2.textContent += text2.charAt(j);
+j++;
+}
+
+else{
+setTimeout(()=>{deleting=true;},2000);
+}
+
+}
+
+else{
+
+if(j > 0){
+el2.textContent = text2.substring(0,j-1);
+j--;
+}
+
+else if(i > 0){
+el1.textContent = text1.substring(0,i-1);
+i--;
+}
+
+else{
+deleting=false;
+}
+
+}
+
+setTimeout(typeEffect,150);
+}
+
+typeEffect();
+</script></body>
 </html>
