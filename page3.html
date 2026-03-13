@@ -4,75 +4,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Aesthetic Studio - Page 3</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #a0d8f1, #1e3c72); /* Light blue → Dark blue */
-    color: black;
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(to right,#a0d8f1,#004e92); /* light blue → dark blue */
+    color:black;
+    overflow-x:hidden;
 }
 
-/* CONTAINER */
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 40px;
+/* MAIN CONTAINER */
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+    position:relative;
+    z-index:1;
 }
 
 /* TOP TITLE */
-.main-title {
-    font-size: 60px;
-    font-weight: bold;
-    margin-bottom: 40px;
+.main-title{
+    font-size:60px;
+    font-weight:bold;
+    margin-bottom:40px;
+    position:relative;
+    overflow:hidden;
+}
+
+/* Wiping Animation */
+.wipe-text{
+    display:inline-block;
+    position:relative;
+    overflow:hidden;
+    color:black;
+}
+
+.wipe-text::before{
+    content:"Aesthetic Studio";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(to right, #fff, #fff);
+    animation:wipe 3s linear infinite;
+}
+
+@keyframes wipe{
+    0% {left:-100%;}
+    50% {left:0;}
+    100% {left:100%;}
 }
 
 /* TEXT BLOCK */
-.text {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 30px 0;
+.text{
+    font-size:24px;
+    font-weight:bold;
+    margin:30px 0;
 }
 
-/* PHOTO STYLING */
-.photo {
-    width: 100%;
-    max-width: 700px;
-    display: block;
-    margin: auto;
-    border-radius: 18px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    margin-bottom: 40px;
-    transition: opacity 1s ease-in-out;
+/* PHOTO */
+.photo{
+    width:100%;
+    max-width:700px;
+    display:block;
+    margin:20px auto;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    opacity:0;
+    animation:fadeIn 1s forwards;
 }
 
-/* FADE-IN ANIMATION */
-.photo {
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+@keyframes fadeIn{
+    to{opacity:1;}
 }
 
 /* FOOTER */
-footer {
-    text-align: left;
-    margin-top: 80px;
-    font-size: 16px;
+footer{
+    text-align:left;
+    margin-top:80px;
+    font-size:16px;
 }
 
-/* LINKS */
-footer a {
-    color: black;
-    text-decoration: none;
-    margin-right: 20px;
+footer a{
+    color:black;
+    text-decoration:none;
+    margin-right:20px;
 }
-
 </style>
 </head>
 
@@ -80,34 +101,60 @@ footer a {
 
 <div class="container">
 
-<div class="main-title">Aesthetic Studio</div>
+<!-- Page Title -->
+<div class="main-title"><span class="wipe-text">Aesthetic Studio</span></div>
 
-<!-- Example Text + Images -->
-<div class="text">Unleash your creativity and explore new designs.</div>
-<img src="main4.png" class="photo">
+<!-- Photos with text blocks -->
 
-<div class="text">Editing transforms a simple photo into an artwork.</div>
+<div class="text">Inspiration can come from anywhere, capture it with your unique style.</div>
 <img src="main1.png" class="photo">
 
-<div class="text">Add colors, crop, and effects to enhance your visuals.</div>
+<div class="text">Small details create a big impact in your artwork.</div>
 <img src="main2.png" class="photo">
 
-<div class="text">Every image tells a story. Make yours unforgettable.</div>
-<img src="main8.png" class="photo">
-
-<div class="text">Experiment with different ideas to create something unique.</div>
+<div class="text">Experiment with colors, shapes, and lighting to enhance creativity.</div>
 <img src="main3.png" class="photo">
 
-<div class="text">Visual storytelling is the heart of digital art.</div>
-<img src="main7.png" class="photo">
+<div class="text">Every photo is a canvas; every edit tells a story.</div>
+<img src="main4.png" class="photo">
 
-<div class="text">Bring your imagination to life with simple edits.</div>
-<img src="main6.png" class="photo">
-
-<div class="text">Combine colors, effects, and creativity seamlessly.</div>
+<div class="text">Find beauty in simplicity and elegance in design.</div>
 <img src="main5.png" class="photo">
 
-<!-- Footer Section -->
+<div class="text">Consistency brings professionalism to your portfolio.</div>
+<img src="main6.png" class="photo">
+
+<div class="text">Merge imagination with technique to make your work stand out.</div>
+<img src="main7.png" class="photo">
+
+<div class="text">The right tools can turn simple edits into visual masterpieces.</div>
+<img src="main8.png" class="photo">
+
+<div class="text">Creativity grows when you experiment without limits.</div>
+<img src="main9.png" class="photo">
+
+<div class="text">Play with angles and perspectives to add depth to your photos.</div>
+<img src="main10.png" class="photo">
+
+<div class="text">Incorporate textures and overlays to give unique effects.</div>
+<img src="main11.png" class="photo">
+
+<div class="text">Visual storytelling conveys emotions beyond words.</div>
+<img src="main12.png" class="photo">
+
+<div class="text">Editing is a journey; each step adds personality to your creation.</div>
+<img src="main13.png" class="photo">
+
+<div class="text">Balance between colors, contrast, and brightness creates harmony.</div>
+<img src="main14.png" class="photo">
+
+<div class="text">Share your vision with others and inspire creativity globally.</div>
+<img src="main15.png" class="photo">
+
+<div class="text">Keep evolving your style and refining your craft.</div>
+<img src="main16.png" class="photo">
+
+<!-- Footer -->
 <footer>
     <div>About Us | Contact Us | Privacy Policy</div>
     <div>Contact: proboys2012@gmail.com</div>
