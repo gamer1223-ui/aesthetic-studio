@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,86 +8,117 @@
 
 <title>Aesthetic Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-
 <style>
 
 body{
 margin:0;
 font-family:Arial;
-background:white;
-text-align:center;
-}
+height:100vh;
 
-header{
+/* GREEN BLENDED BACKGROUND */
+
+background:linear-gradient(135deg,#0f3d2e,#1f6f54,#e9fff4);
+
+color:white;
+
 display:flex;
-justify-content:space-between;
 align-items:center;
-padding:20px 40px;
+justify-content:center;
+overflow:hidden;
 }
 
-.site-title{
+/* MAIN CONTAINER */
 
-font-family:'Dancing Script',cursive;
-font-size:48px;
+.container{
+text-align:center;
+max-width:900px;
+padding:40px;
+position:relative;
+z-index:1;
+}
+
+/* RGB TITLE */
+
+.title{
+font-size:72px;
 font-weight:bold;
+margin-bottom:30px;
 
-background:linear-gradient(90deg, red, orange, yellow, green, blue, purple);
+background:linear-gradient(90deg,red,orange,yellow,green,cyan,blue,purple);
 background-size:400%;
 
 -webkit-background-clip:text;
-color:transparent;
+-webkit-text-fill-color:transparent;
 
-animation:rgbGlow 6s linear infinite;
-
+animation:rgbMove 6s linear infinite;
 }
 
-@keyframes rgbGlow{
+@keyframes rgbMove{
 0%{background-position:0%}
 100%{background-position:400%}
 }
 
-.logo{
-width:60px;
+/* BIG TEXT */
+
+.big-text{
+font-size:36px;
+font-weight:bold;
+margin-bottom:20px;
 }
 
-.welcome{
-margin-top:150px;
-}
+/* SMALL DESCRIPTION */
 
-.dive-btn{
-
-margin-top:30px;
-
-padding:16px 40px;
-
+.small-text{
 font-size:18px;
-
-border:none;
-
-border-radius:12px;
-
-background:#5b5bff;
-
-color:white;
-
-cursor:pointer;
-
+color:#d7f5e6;
+line-height:1.6;
+margin-bottom:30px;
 }
 
-footer{
+/* EMAIL */
 
-margin-top:200px;
-
+.email{
+font-size:16px;
+color:#c7e9da;
 }
 
-footer a{
+/* PARTICLES BACKGROUND */
 
-margin:0 20px;
+.particles{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+}
 
-text-decoration:none;
+.particles span{
+position:absolute;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+opacity:0.5;
+animation:float 10s linear infinite;
+}
 
-color:#333;
+@keyframes float{
+
+0%{
+transform:translateY(100vh) scale(0);
+opacity:0;
+}
+
+50%{
+opacity:0.7;
+}
+
+100%{
+transform:translateY(-10vh) scale(1);
+opacity:0;
+}
 
 }
 
@@ -96,47 +128,43 @@ color:#333;
 
 <body>
 
-<header>
+<!-- PARTICLES -->
 
-<div class="site-title">Aesthetic Studio</div>
+<div class="particles">
 
-<img src="logo.png" class="logo">
-
-</header>
-
-
-<div class="welcome">
-
-<h2>Welcome to the Pro Photo Editor</h2>
-
-<p>Create stunning photos with stickers, filters, crop tools and download in HD quality.</p>
-
-<button class="dive-btn" onclick="openPage2()">Dive In</button>
+<span style="left:10%;animation-delay:0s"></span>
+<span style="left:20%;animation-delay:2s"></span>
+<span style="left:30%;animation-delay:4s"></span>
+<span style="left:40%;animation-delay:1s"></span>
+<span style="left:50%;animation-delay:3s"></span>
+<span style="left:60%;animation-delay:5s"></span>
+<span style="left:70%;animation-delay:2s"></span>
+<span style="left:80%;animation-delay:4s"></span>
+<span style="left:90%;animation-delay:1s"></span>
 
 </div>
 
+<div class="container">
 
-<footer>
+<div class="title">
+Aesthetic Studio
+</div>
 
-<a href="#">About Us</a>
+<div class="big-text">
+Create Ideas. Shape Design. Build Beauty.
+</div>
 
-<a href="#">Privacy Policy</a>
+<div class="small-text">
+Aesthetic Studio is a creative digital space where imagination turns into design. 
+Explore visual inspiration, experiment with editing tools, and transform simple 
+images into stunning aesthetic creations.
+</div>
 
-<a href="#">Contact</a>
+<div class="email">
+Contact: proboys2012@gmail.com
+</div>
 
-</footer>
-
-
-<script>
-
-function openPage2(){
-
-window.location.href="./page2.html";
-
-}
-
-</script>
-
+</div>
 
 </body>
 
