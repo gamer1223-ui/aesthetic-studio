@@ -1,4 +1,5 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html><html>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aesthetic Studio</title><style>
@@ -7,6 +8,7 @@ margin:0;
 font-family:Arial;
 background:linear-gradient(to right,#ffb6e6,#bfa0ff);
 color:black;
+overflow-x:hidden;
 }
 
 /* BACKGROUND MOVING WORDS */
@@ -37,6 +39,7 @@ animation:moveWords 22s linear infinite;
 100%{transform:translateX(-120vw) translateY(120vh) rotate(-35deg);} 
 }
 
+/* MAIN CONTAINER */
 .container{
 max-width:900px;
 margin:auto;
@@ -45,9 +48,8 @@ position:relative;
 z-index:1;
 }
 
-/* BIG TITLE */
+/* LEFT TITLE */
 .site-title{
-text-align:center;
 font-weight:900;
 margin-bottom:60px;
 }
@@ -71,6 +73,7 @@ font-weight:bold;
 margin:40px 0;
 }
 
+/* PHOTO */
 .photo{
 width:100%;
 max-width:700px;
@@ -79,6 +82,14 @@ margin:auto;
 border-radius:18px;
 box-shadow:0 10px 25px rgba(0,0,0,0.3);
 margin-bottom:40px;
+opacity:0;
+transform:translateY(40px);
+transition:all 0.8s ease;
+}
+
+.photo.show{
+opacity:1;
+transform:translateY(0);
 }
 
 .ai-section{
@@ -117,7 +128,7 @@ font-weight:bold;
 margin-top:10px;
 font-size:16px;
 }
-</style></head><body><!-- Moving Background Words --><div class="bg-words">
+</style></head><body><!-- BACKGROUND WORDS --><div class="bg-words">
 <span style="top:0%;">AESTHETIC STUDIO</span>
 <span style="top:10%;">AESTHETIC STUDIO</span>
 <span style="top:20%;">AESTHETIC STUDIO</span>
@@ -128,7 +139,7 @@ font-size:16px;
 <span style="top:70%;">AESTHETIC STUDIO</span>
 <span style="top:80%;">AESTHETIC STUDIO</span>
 <span style="top:90%;">AESTHETIC STUDIO</span>
-</div><div class="container"><!-- BIG TITLE --><div class="site-title">
+</div><div class="container"><!-- LEFT TYPING TITLE --><div class="site-title">
 <div class="line" id="line1"></div>
 <div class="line" id="line2"></div>
 </div><div class="main-title">
@@ -149,6 +160,8 @@ Privacy Policy
 <div class="footer-links">About Us | Contact Us</div>
 <div class="email">proboys2012@gmail.com</div>
 </footer></div><script>
+
+/* TYPING EFFECT */
 const text1 = "Aesthetic";
 const text2 = "Studio";
 const el1 = document.getElementById("line1");
@@ -156,7 +169,7 @@ const el2 = document.getElementById("line2");
 
 let i = 0;
 let j = 0;
-let phase = "type1"; // type1 -> type2 -> wait -> delete2 -> delete1
+let phase = "type1";
 
 function typeEffect(){
 
@@ -210,5 +223,19 @@ setTimeout(typeEffect,120);
 }
 
 typeEffect();
+
+/* PHOTO FADE-IN ON SCROLL */
+const photos = document.querySelectorAll(".photo");
+
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+},{ threshold:0.2 });
+
+photos.forEach(photo => observer.observe(photo));
+
 </script></body>
 </html>
