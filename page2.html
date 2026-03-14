@@ -19,26 +19,29 @@ body {
   padding:40px;
 }
 
-/* TYPING ANIMATION FOR BOTH LINES */
+/* TYPING ANIMATION WITHOUT BLINK, WITH 5s PAUSE AFTER FULL WORD AND FADE */
 .title-line {
   font-size:48px;
   font-weight:bold;
   text-align:left;
   color:black;
-  border-right:4px solid black;
   white-space: nowrap;
   overflow: hidden;
-  width:0;
-  animation: typing 3s steps(9) infinite alternate;
-  margin-bottom:20px;
+  display:inline-block;
+  opacity: 0;
 }
 
-.title-line:nth-child(1) { animation-delay: 0s; }
-.title-line:nth-child(2) { animation-delay: 0s; }
+/* KEYFRAMES: type forward, wait, fade out, erase, loop */
+@keyframes typingAnim {
+  0%, 15% { width: 0; opacity:1; }        /* typing start */
+  15%, 55% { width: 100%; opacity:1; }    /* fully typed stays for 5s */
+  55%, 65% { opacity:0.2; }               /* gentle fade out */
+  65%, 80% { width: 0; opacity:0; }       /* erase */
+  80%, 100% { width: 0; opacity:0; }      /* wait before next loop */
+}
 
-@keyframes typing {
-  from { width:0; }
-  to { width: 170px; } /* adjust to fit full word */
+.title-line {
+  animation: typingAnim 12s steps(12) infinite;
 }
 
 /* TEXT BLOCK */
@@ -125,10 +128,10 @@ footer {
 
 <div class="container">
 
-  <!-- FIRST LINE: Aesthetic -->
-  <div class="title-line">Aesthetic</div>
+  <!-- FIRST LINE: Aesthetic (static) -->
+  <div class="title-line" style="opacity:1; animation:none;">Aesthetic</div>
 
-  <!-- SECOND LINE: Studio -->
+  <!-- SECOND LINE: Studio (animated with typing + fade) -->
   <div class="title-line">Studio</div>
 
   <!-- TEXT AND PHOTOS -->
