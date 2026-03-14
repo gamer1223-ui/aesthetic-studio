@@ -1,166 +1,190 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Aesthetic Studio - Page 3</title>
-
 <style>
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:linear-gradient(to right,#a0d8f1,#004e92); /* light blue → dark blue */
-    color:black;
-    overflow-x:hidden;
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right,#add8e6,#00008b); /* light blue to dark blue */
+  color:black;
+  overflow-x:hidden;
 }
 
-/* MAIN CONTAINER */
-.container{
-    max-width:900px;
-    margin:auto;
-    padding:40px;
-    position:relative;
-    z-index:1;
+.container {
+  max-width:900px;
+  margin:auto;
+  padding:40px;
 }
 
-/* TOP TITLE */
-.main-title{
-    font-size:60px;
-    font-weight:bold;
-    margin-bottom:40px;
-    position:relative;
-    overflow:hidden;
-}
-
-/* Wiping Animation */
-.wipe-text{
-    display:inline-block;
-    position:relative;
-    overflow:hidden;
-    color:black;
-}
-
-.wipe-text::before{
-    content:"Aesthetic Studio";
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:100%;
-    background:linear-gradient(to right, #fff, #fff);
-    animation:wipe 3s linear infinite;
-}
-
-@keyframes wipe{
-    0% {left:-100%;}
-    50% {left:0;}
-    100% {left:100%;}
+/* STATIC BIG TITLE */
+.title {
+  font-size:48px;
+  font-weight:bold;
+  text-align:left;
+  margin-bottom:40px;
 }
 
 /* TEXT BLOCK */
-.text{
-    font-size:24px;
-    font-weight:bold;
-    margin:30px 0;
+.text {
+  font-size:24px;
+  font-weight:bold;
+  margin:30px 0;
 }
 
-/* PHOTO */
-.photo{
-    width:100%;
-    max-width:700px;
-    display:block;
-    margin:20px auto;
-    border-radius:18px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
-    opacity:0;
-    animation:fadeIn 1s forwards;
+/* IMAGE STYLING */
+.photo {
+  width:100%;
+  max-width:700px;
+  display:block;
+  margin:auto;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  margin-bottom:40px;
+  opacity:0;
+  transform: translateY(30px);
+  transition: all 1s ease;
 }
 
-@keyframes fadeIn{
-    to{opacity:1;}
+/* IMAGE ANIMATION ON SCROLL */
+.photo.show {
+  opacity:1;
+  transform: translateY(0);
 }
 
 /* FOOTER */
-footer{
-    text-align:left;
-    margin-top:80px;
-    font-size:16px;
+footer {
+  text-align:center;
+  margin-top:80px;
+  font-size:16px;
+  color:black;
 }
 
-footer a{
-    color:black;
-    text-decoration:none;
-    margin-right:20px;
+.info-text {
+  font-size:14px;
+  color:#aaa;
+  margin:15px 0;
+  text-align:left;
+}
+
+@media screen and (max-width:768px) {
+  .title { font-size:36px; }
+  .text { font-size:20px; }
+  .photo { max-width:90%; }
+}
+
+/* BUTTON STYLING */
+.button-section {
+  text-align:center;
+  margin:50px 0;
+}
+
+.button {
+  background:black;
+  color:white;
+  padding:14px 28px;
+  border:none;
+  border-radius:10px;
+  font-size:18px;
+  cursor:pointer;
+  transition: all 0.2s ease;
+  margin-bottom:20px;
+}
+.button:hover {
+  background:white;
+  color:black;
+  border:1px solid #888;
+  transform: scale(1.05);
 }
 </style>
 </head>
-
 <body>
 
 <div class="container">
 
-<!-- Page Title -->
-<div class="main-title"><span class="wipe-text">Aesthetic Studio</span></div>
+  <!-- STATIC BIG TITLE -->
+  <div class="title">Aesthetic Studio</div>
 
-<!-- Photos with text blocks -->
+  <!-- IMAGES WITH TEXT IN BETWEEN -->
+  <div class="text">Transform your ideas into art.</div>
+  <img src="main1.png" class="photo">
 
-<div class="text">Inspiration can come from anywhere, capture it with your unique style.</div>
-<img src="main1.png" class="photo">
+  <div class="text">Experiment with different edits.</div>
+  <img src="main2.png" class="photo">
 
-<div class="text">Small details create a big impact in your artwork.</div>
-<img src="main2.png" class="photo">
+  <div class="text">Create your own unique style.</div>
+  <img src="main3.png" class="photo">
 
-<div class="text">Experiment with colors, shapes, and lighting to enhance creativity.</div>
-<img src="main3.png" class="photo">
+  <div class="text">Discover new techniques and designs.</div>
+  <img src="main4.png" class="photo">
 
-<div class="text">Every photo is a canvas; every edit tells a story.</div>
-<img src="main4.png" class="photo">
+  <div class="text">Visual storytelling made simple.</div>
+  <img src="main5.png" class="photo">
 
-<div class="text">Find beauty in simplicity and elegance in design.</div>
-<img src="main5.png" class="photo">
+  <div class="text">Play with color, light, and texture.</div>
+  <img src="main6.png" class="photo">
 
-<div class="text">Consistency brings professionalism to your portfolio.</div>
-<img src="main6.png" class="photo">
+  <div class="text">Turn ordinary photos into extraordinary art.</div>
+  <img src="main7.png" class="photo">
 
-<div class="text">Merge imagination with technique to make your work stand out.</div>
-<img src="main7.png" class="photo">
+  <div class="text">Keep exploring new horizons.</div>
+  <img src="main8.png" class="photo">
 
-<div class="text">The right tools can turn simple edits into visual masterpieces.</div>
-<img src="main8.png" class="photo">
+  <div class="text">Push your creativity to the next level.</div>
+  <img src="main9.png" class="photo">
 
-<div class="text">Creativity grows when you experiment without limits.</div>
-<img src="main9.png" class="photo">
+  <div class="text">Inspiration is everywhere.</div>
+  <img src="main10.png" class="photo">
 
-<div class="text">Play with angles and perspectives to add depth to your photos.</div>
-<img src="main10.png" class="photo">
+  <div class="text">Combine effects to tell a story.</div>
+  <img src="main11.png" class="photo">
 
-<div class="text">Incorporate textures and overlays to give unique effects.</div>
-<img src="main11.png" class="photo">
+  <div class="text">Learn, create, and enjoy.</div>
+  <img src="main12.png" class="photo">
 
-<div class="text">Visual storytelling conveys emotions beyond words.</div>
-<img src="main12.png" class="photo">
+  <div class="text">Aesthetic design is in the details.</div>
+  <img src="main13.png" class="photo">
 
-<div class="text">Editing is a journey; each step adds personality to your creation.</div>
-<img src="main13.png" class="photo">
+  <div class="text">Find beauty in every edit.</div>
+  <img src="main14.png" class="photo">
 
-<div class="text">Balance between colors, contrast, and brightness creates harmony.</div>
-<img src="main14.png" class="photo">
+  <div class="text">Your imagination is the limit.</div>
+  <img src="main15.png" class="photo">
 
-<div class="text">Share your vision with others and inspire creativity globally.</div>
-<img src="main15.png" class="photo">
+  <div class="text">Keep experimenting, keep creating.</div>
+  <img src="main16.png" class="photo">
 
-<div class="text">Keep evolving your style and refining your craft.</div>
-<img src="main16.png" class="photo">
+  <!-- BUTTON SECTION -->
+  <div class="button-section">
+    <button class="button">Try our AI</button><br>
+    <button class="button">Edit On Your Own</button>
+  </div>
 
-<!-- Footer -->
-<footer>
-    <div>About Us | Contact Us | Privacy Policy</div>
-    <div>Contact: proboys2012@gmail.com</div>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    About Us | Contact Us | Privacy Policy <br>
+    proboys2012@gmail.com
+  </footer>
 
 </div>
+
+<script>
+// Scroll-triggered image animation
+const photos = document.querySelectorAll('.photo');
+const options = { threshold: 0.1 };
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+}, options);
+
+photos.forEach(photo => { observer.observe(photo); });
+</script>
 
 </body>
 </html>
