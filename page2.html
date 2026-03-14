@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aesthetic Studio - Page 2</title>
 <style>
-/* ==================================== */
-/* BODY AND BACKGROUND */
 body {
   margin:0;
   font-family: Arial, sans-serif;
@@ -15,24 +13,37 @@ body {
   overflow-x:hidden;
 }
 
-/* ==================================== */
-/* CONTAINER */
 .container {
   max-width:900px;
   margin:auto;
   padding:40px;
 }
 
-/* ==================================== */
-/* BIG TITLE */
+/* Typing animation */
 .main-title {
   font-size:48px;
   font-weight:bold;
   margin-bottom:40px;
   text-align:left;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: .15em solid black;
 }
 
-/* ==================================== */
+/* Typing effect forward and backward */
+@keyframes typingForward {
+  from { width:0ch; }
+  to { width:16ch; }
+}
+@keyframes typingBackward {
+  from { width:16ch; }
+  to { width:0ch; }
+}
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: black; }
+}
+
 /* TEXT BLOCK */
 .text {
   font-size:28px;
@@ -40,7 +51,6 @@ body {
   margin:40px 0;
 }
 
-/* ==================================== */
 /* PHOTOS */
 .photo {
   width:100%;
@@ -53,33 +63,26 @@ body {
   opacity:0;
   animation: fadeIn 1.5s forwards;
 }
-
-/* Animate photos sequentially */
 .photo:nth-of-type(1) { animation-delay: 0.2s; }
 .photo:nth-of-type(2) { animation-delay: 0.4s; }
 .photo:nth-of-type(3) { animation-delay: 0.6s; }
 .photo:nth-of-type(4) { animation-delay: 0.8s; }
 
-/* ==================================== */
-/* FADE IN ANIMATION */
 @keyframes fadeIn {
   to { opacity:1; }
 }
 
-/* ==================================== */
 /* AI SECTION */
 .ai-section {
   text-align:center;
   margin-top:50px;
 }
-
 .ai-text {
   color:#888;
   font-size:16px;
   margin-bottom:10px;
 }
 
-/* ==================================== */
 /* BUTTONS */
 .ai-button, .explore-button {
   background:black;
@@ -92,7 +95,6 @@ body {
   margin-top:10px;
   transition: all 0.2s ease;
 }
-
 .ai-button:hover, .explore-button:hover {
   background:white;
   color:black;
@@ -100,7 +102,6 @@ body {
   transform: scale(1.05);
 }
 
-/* ==================================== */
 /* FOOTER */
 footer {
   text-align:center;
@@ -108,7 +109,6 @@ footer {
   font-size:16px;
 }
 
-/* ==================================== */
 /* SMALL GREY TEXT */
 .info-text {
   font-size:14px;
@@ -117,7 +117,6 @@ footer {
   text-align:center;
 }
 
-/* ==================================== */
 /* BACKGROUND ANIMATED TEXT */
 .background-text {
   position: fixed;
@@ -136,12 +135,9 @@ footer {
   100% { left: 110%; }
 }
 
-/* ==================================== */
-/* ADDITIONAL STYLING FOR SECTIONS */
 .section {
   margin-bottom:50px;
 }
-
 .section img {
   display:block;
   margin:auto;
@@ -149,14 +145,12 @@ footer {
   max-width:700px;
   box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
-
 .section .text {
   font-size:26px;
   font-weight:bold;
   margin:30px 0;
 }
 
-/* ==================================== */
 /* RESPONSIVE */
 @media screen and (max-width:768px) {
   .main-title { font-size:36px; }
@@ -167,51 +161,80 @@ footer {
 </head>
 <body>
 
-<!-- BACKGROUND ANIMATED TEXT -->
 <div class="background-text">Aesthetic Studio</div>
 
 <div class="container">
+  <!-- MAIN TITLE -->
+  <div class="main-title" id="typingTitle"></div>
 
-<!-- MAIN TITLE -->
-<div class="main-title">Aesthetic Studio</div>
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="text">A single photo can hold a thousand emotions. Start creating something beautiful.</div>
+    <img src="photo1.png" class="photo">
+  </div>
 
-<!-- SECTION 1 -->
-<div class="section">
-  <div class="text">A single photo can hold a thousand emotions. Start creating something beautiful.</div>
-  <img src="photo1.png" class="photo">
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="text">Every edit tells a story. Adjust, crop and design your perfect aesthetic.</div>
+    <img src="photo2.png" class="photo">
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="text">Your creativity deserves a canvas. Turn simple images into visual art.</div>
+    <img src="photo3.png" class="photo">
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="text">Let your imagination guide the design. Build something uniquely yours.</div>
+    <img src="photo4.png" class="photo">
+  </div>
+
+  <!-- AI SECTION -->
+  <div class="ai-section">
+    <div class="ai-text">Try our AI</div>
+    <button class="ai-button">Try our AI</button>
+    <div class="info-text">Enhance your designs and explore more creative ideas with our tools.</div>
+    <button class="explore-button" onclick="location.href='page3.html'">Explore More</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+  About Us | Contact Us: proboys2012@gmail.com | Privacy Policy
+  </footer>
 </div>
 
-<!-- SECTION 2 -->
-<div class="section">
-  <div class="text">Every edit tells a story. Adjust, crop and design your perfect aesthetic.</div>
-  <img src="photo2.png" class="photo">
-</div>
+<script>
+// TYPING ANIMATION SCRIPT
+const title = "Aesthetic Studio";
+const titleElement = document.getElementById("typingTitle");
+let index = 0;
+let forward = true;
 
-<!-- SECTION 3 -->
-<div class="section">
-  <div class="text">Your creativity deserves a canvas. Turn simple images into visual art.</div>
-  <img src="photo3.png" class="photo">
-</div>
+function typeAnimation() {
+  if(forward) {
+    index++;
+    titleElement.textContent = title.substring(0,index);
+    if(index === title.length) {
+      forward = false;
+      setTimeout(typeAnimation, 3000); // wait 3 seconds
+      return;
+    }
+  } else {
+    index--;
+    titleElement.textContent = title.substring(0,index);
+    if(index === 0) {
+      forward = true;
+      setTimeout(typeAnimation, 500);
+      return;
+    }
+  }
+  setTimeout(typeAnimation, 150);
+}
 
-<!-- SECTION 4 -->
-<div class="section">
-  <div class="text">Let your imagination guide the design. Build something uniquely yours.</div>
-  <img src="photo4.png" class="photo">
-</div>
+typeAnimation();
+</script>
 
-<!-- AI SECTION -->
-<div class="ai-section">
-  <div class="ai-text">Try our AI</div>
-  <button class="ai-button">Try our AI</button>
-  <div class="info-text">Enhance your designs and explore more creative ideas with our tools.</div>
-  <button class="explore-button" onclick="location.href='page3.html'">Explore More</button>
-</div>
-
-<!-- FOOTER -->
-<footer>
-About Us | Contact Us: proboys2012@gmail.com | Privacy Policy
-</footer>
-
-</div>
 </body>
 </html>
