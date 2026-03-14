@@ -19,7 +19,7 @@ body {
   padding:40px;
 }
 
-/* Typing animation */
+/* MAIN TITLE - TWO LINES WITH TYPING */
 .main-title {
   font-size:48px;
   font-weight:bold;
@@ -28,20 +28,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   border-right: .15em solid black;
-}
-
-/* Typing effect forward and backward */
-@keyframes typingForward {
-  from { width:0ch; }
-  to { width:16ch; }
-}
-@keyframes typingBackward {
-  from { width:16ch; }
-  to { width:0ch; }
-}
-@keyframes blink {
-  from, to { border-color: transparent; }
-  50% { border-color: black; }
+  line-height:1.2;
 }
 
 /* TEXT BLOCK */
@@ -206,31 +193,35 @@ footer {
 </div>
 
 <script>
-// TYPING ANIMATION SCRIPT
-const title = "Aesthetic Studio";
+// TYPING ANIMATION SCRIPT FOR TWO LINES
+const lines = ["Aesthetic","Studio"];
 const titleElement = document.getElementById("typingTitle");
-let index = 0;
+let lineIndex = 0;
+let charIndex = 0;
 let forward = true;
+let typingSpeed = 150;
 
 function typeAnimation() {
+  let currentLine = lines[lineIndex];
   if(forward) {
-    index++;
-    titleElement.textContent = title.substring(0,index);
-    if(index === title.length) {
+    charIndex++;
+    titleElement.innerHTML = lines[0] + "<br>" + currentLine.substring(0,charIndex);
+    if(charIndex === currentLine.length) {
       forward = false;
-      setTimeout(typeAnimation, 3000); // wait 3 seconds
+      setTimeout(typeAnimation,3000);
       return;
     }
   } else {
-    index--;
-    titleElement.textContent = title.substring(0,index);
-    if(index === 0) {
-      forward = true;
-      setTimeout(typeAnimation, 500);
+    charIndex--;
+    titleElement.innerHTML = lines[0] + "<br>" + currentLine.substring(0,charIndex);
+    if(charIndex===0){
+      forward=true;
+      lineIndex = (lineIndex + 1) % lines.length;
+      setTimeout(typeAnimation,500);
       return;
     }
   }
-  setTimeout(typeAnimation, 150);
+  setTimeout(typeAnimation, typingSpeed);
 }
 
 typeAnimation();
