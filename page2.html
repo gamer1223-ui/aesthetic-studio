@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,9 @@
 <style>
 body {
   margin:0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right,#ffb6e6,#bfa0ff);
+  font-family:Arial;
+  background:linear-gradient(to right,#ffb6e6,#bfa0ff); /* pink → purple */
   color:black;
-  overflow-x:hidden;
 }
 
 .container {
@@ -19,29 +19,12 @@ body {
   padding:40px;
 }
 
-/* TYPING ANIMATION WITHOUT BLINK, WITH 5s PAUSE AFTER FULL WORD AND FADE */
-.title-line {
+/* STATIC BIG TITLE */
+.main-title {
   font-size:48px;
   font-weight:bold;
+  margin-bottom:40px;
   text-align:left;
-  color:black;
-  white-space: nowrap;
-  overflow: hidden;
-  display:inline-block;
-  opacity: 0;
-}
-
-/* KEYFRAMES: type forward, wait, fade out, erase, loop */
-@keyframes typingAnim {
-  0%, 15% { width: 0; opacity:1; }        /* typing start */
-  15%, 55% { width: 100%; opacity:1; }    /* fully typed stays for 5s */
-  55%, 65% { opacity:0.2; }               /* gentle fade out */
-  65%, 80% { width: 0; opacity:0; }       /* erase */
-  80%, 100% { width: 0; opacity:0; }      /* wait before next loop */
-}
-
-.title-line {
-  animation: typingAnim 12s steps(12) infinite;
 }
 
 /* TEXT BLOCK */
@@ -61,16 +44,14 @@ body {
   box-shadow:0 10px 25px rgba(0,0,0,0.3);
   margin-bottom:40px;
   opacity:0;
-  animation: fadeIn 1.5s forwards;
+  transform: translateY(30px);
+  transition: all 1s ease;
 }
 
-.photo:nth-of-type(1) { animation-delay: 0.2s; }
-.photo:nth-of-type(2) { animation-delay: 0.4s; }
-.photo:nth-of-type(3) { animation-delay: 0.6s; }
-.photo:nth-of-type(4) { animation-delay: 0.8s; }
-
-@keyframes fadeIn {
-  to { opacity:1; }
+/* IMAGE ANIMATION ON SCROLL */
+.photo.show {
+  opacity:1;
+  transform: translateY(0);
 }
 
 /* AI SECTION */
@@ -85,6 +66,7 @@ body {
   margin-bottom:10px;
 }
 
+/* BUTTON */
 .ai-button {
   background:black;
   color:white;
@@ -94,6 +76,7 @@ body {
   font-size:18px;
   cursor:pointer;
   transition: all 0.2s ease;
+  margin-bottom:20px;
 }
 .ai-button:hover {
   background:white;
@@ -107,52 +90,49 @@ footer {
   text-align:center;
   margin-top:80px;
   font-size:16px;
-  color:black;
 }
 
-.info-text {
-  font-size:14px;
-  color:#aaa;
-  margin:15px 0;
-  text-align:left;
+/* TYPING ANIMATION */
+.typing {
+  border-right: 3px solid black;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: typing 4s steps(15) infinite alternate;
 }
-
-@media screen and (max-width:768px) {
-  .title-line { font-size:36px; }
-  .text { font-size:20px; }
-  .photo { max-width:90%; }
+@keyframes typing {
+  0% { width:0; }
+  50% { width:100%; }
+  100% { width:0; }
 }
 </style>
 </head>
+
 <body>
 
 <div class="container">
 
-  <!-- FIRST LINE: Aesthetic (static) -->
-  <div class="title-line" style="opacity:1; animation:none;">Aesthetic</div>
-
-  <!-- SECOND LINE: Studio (animated with typing + fade) -->
-  <div class="title-line">Studio</div>
-
-  <!-- TEXT AND PHOTOS -->
-  <div class="text">
-    A single photo can hold a thousand emotions. Start creating something beautiful.
+  <!-- STATIC TITLE -->
+  <div class="main-title">
+    Aesthetic Studio
   </div>
+
+  <!-- TYPING ANIMATION BELOW -->
+  <div class="main-title typing">
+    Aesthetic Studio
+  </div>
+
+  <!-- PHOTOS AND TEXT -->
+  <div class="text">A single photo can hold a thousand emotions. Start creating something beautiful.</div>
   <img src="photo1.png" class="photo">
 
-  <div class="text">
-    Every edit tells a story. Adjust, crop and design your perfect aesthetic.
-  </div>
+  <div class="text">Every edit tells a story. Adjust, crop and design your perfect aesthetic.</div>
   <img src="photo2.png" class="photo">
 
-  <div class="text">
-    Your creativity deserves a canvas. Turn simple images into visual art.
-  </div>
+  <div class="text">Your creativity deserves a canvas. Turn simple images into visual art.</div>
   <img src="photo3.png" class="photo">
 
-  <div class="text">
-    Let your imagination guide the design. Build something uniquely yours.
-  </div>
+  <div class="text">Let your imagination guide the design. Build something uniquely yours.</div>
   <img src="photo4.png" class="photo">
 
   <!-- AI SECTION -->
@@ -161,10 +141,33 @@ footer {
     <button class="ai-button">Try our AI</button>
   </div>
 
+  <!-- EXPLORE MORE BUTTON -->
+  <div class="ai-section">
+    <div class="ai-text" style="margin-top:20px;">Explore more amazing edits</div>
+    <a href="page3.html"><button class="ai-button">Explore More</button></a>
+  </div>
+
+  <!-- FOOTER -->
   <footer>
-    Privacy Policy
+    Privacy Policy | About Us | Contact Us <br>
+    proboys2012@gmail.com
   </footer>
 
 </div>
+
+<script>
+// Scroll-triggered image animation
+const photos = document.querySelectorAll('.photo');
+const options = { threshold: 0.1 };
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+}, options);
+photos.forEach(photo => { observer.observe(photo); });
+</script>
+
 </body>
 </html>
