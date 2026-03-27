@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Studio</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    text-align: center;
+}
+
+/* TITLE */
+.title {
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 60px;
+}
+
+/* SUBTEXT */
+.subtitle {
+    color: #cfcfcf;
+    margin: 20px;
+    font-size: 18px;
+}
+
+/* INPUT BOX */
+input {
+    padding: 15px;
+    width: 70%;
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* BUTTON */
+button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 12px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* RESULT BOX */
+.result {
+    margin-top: 40px;
+    padding: 20px;
+    color: #ddd;
+    font-size: 18px;
+    min-height: 50px;
+}
+
+/* FAKE LOADING ANIMATION */
+.loading {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% {opacity: 0.2;}
+    50% {opacity: 1;}
+    100% {opacity: 0.2;}
+}
+
+/* BACK BUTTON */
+.back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+</style>
+
+</head>
+
+<body>
+
+<a href="page2.html" class="back">⬅ Back</a>
+
+<div class="title">AI Editor</div>
+
+<div class="subtitle">
+Type something like “Make my photo aesthetic” or “Add cinematic effect”
+</div>
+
+<input type="text" id="inputBox" placeholder="Type your idea...">
+
+<br>
+
+<button onclick="generate()">Generate</button>
+
+<div class="result" id="resultBox"></div>
+
+<script>
+function generate() {
+    let input = document.getElementById("inputBox").value;
+    let result = document.getElementById("resultBox");
+
+    if(input === "") {
+        result.innerHTML = "⚠ Please type something first!";
+        return;
+    }
+
+    result.innerHTML = "<span class='loading'>Generating...</span>";
+
+    setTimeout(() => {
+        result.innerHTML = "✨ AI Suggestion: Try adding glow, contrast, and smooth tones to make it aesthetic!";
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
